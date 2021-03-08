@@ -33,7 +33,7 @@ namespace WebServiceResTEC
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebServiceResTEC", Version = "v1" });
             });
-            services.AddScoped<IRepo, AdminRepo>();
+            services.AddScoped<IRepo, DataRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

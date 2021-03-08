@@ -1,0 +1,18 @@
+<Clients>
+    <Client>
+        <IdCard>30519015</IdCard>
+        <Password>000333</Password>
+        <Name>Kevin Barrantes Cerdas</Name>
+        <PhoneNumbers>
+            <PhoneNumber>89482288</PhoneNumber>
+        </PhoneNumbers>
+        <Email>client@client.com</Email>
+        <BirthDate>16/03/96</BirthDate>
+        <Adress>
+            <Province>Cartago</Province>
+            <Canton>Paraiso</Canton>
+            <District>Orosi</District>
+        </Adress>
+        <AmountOrders>0</AmountOrders>
+    </Client>
+</Clients>

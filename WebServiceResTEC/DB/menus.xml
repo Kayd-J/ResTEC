@@ -1,11 +1,11 @@
 <Menus>
     <Menu>
         <Id>0</Id>
-        <Tipo>Desayuno</Tipo>
-        <Calorias>800</Calorias>
-        <Platos>
-            <Plato>0</Plato>
-            <Plato>1</Plato>
-        </Platos>
+        <Type>Desayuno</Type>
+        <Calories>800</Calories>
+        <Dishes>
+            <Dish>0</Dish>
+            <Dish>1</Dish>
+        </Dishes>
     </Menu>
 </Menus>
