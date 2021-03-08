@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using API_example.Models;
+using WebServiceResTEC.Models;
 
-namespace API_example.Data
+namespace WebServiceResTEC.Data
 {
     public class MockTestRepo : ITestRepo
     {

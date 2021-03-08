@@ -1,4 +1,4 @@
-namespace API_example.Models{
+namespace WebServiceResTEC.Models{
 
     public class Test
     {

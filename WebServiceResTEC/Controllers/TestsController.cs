@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using API_example.Data;
-using API_example.Models;
+using WebServiceResTEC.Data;
+using WebServiceResTEC.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API_example.Controllers
+namespace WebServiceResTEC.Controllers
 {
 
     [Route("api/[controller]")]
