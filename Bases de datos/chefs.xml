@@ -1,0 +1,15 @@
+<Chefs>
+    <Chef>
+        <Id>1</Id>
+        <Nombre>
+            <PrimerNombre>Erick</PrimerNombre>
+            <Apellido1>Barrantes</Apellido1>
+            <Apellido2>Cerdas</Apellido2>
+        </Nombre>
+        <Correo>erick.barrantes12@gmail.com</Correo>
+        <Contrasenia>123456</Contrasenia>
+        <Pedidos>
+            <Pedido>0</Pedido>
+        </Pedidos>
+    </Chef>
+</Chefs>

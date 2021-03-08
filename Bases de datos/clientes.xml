@@ -1,0 +1,22 @@
+<Clientes>
+    <Cliente>
+        <Cedula>30519015</Cedula>
+        <Contrasenia>000333</Contrasenia>
+        <Nombre>
+            <PrimerNombre>Kevin</PrimerNombre>
+            <Apellido1>Barrantes</Apellido1>
+            <Apellido2>Cerdas</Apellido2>
+        </Nombre>
+        <Telefonos>
+            <Telefono>89482288</Telefono>
+        </Telefonos>
+        <Correo>cliente@cliente.com</Correo>
+        <FechaNacimiento>12/07/99</FechaNacimiento>
+        <Direccion>
+            <Provincia>Cartago</Provincia>
+            <Canton>Paraiso</Canton>
+            <Distrito>Orosi</Distrito>
+        </Direccion>
+        <CantidadOrdenes>0</CantidadOrdenes>
+    </Cliente>
+</Clientes>
