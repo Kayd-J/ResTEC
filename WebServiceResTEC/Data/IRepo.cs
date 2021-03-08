@@ -5,9 +5,8 @@ using WebServiceResTEC.Models;
 namespace WebServiceResTEC.Data
 {
     
-    public interface ITestRepo
+    public interface IRepo
     {
-        IEnumerable<Test> GetAppTests();
-        Test GetTestById(int id);
+        Admin GetAdmin();
     }
 }
