@@ -8,5 +8,6 @@ namespace WebServiceResTEC.Data
     public interface IRepo
     {
         Admin GetAdmin();
+        void CreateAdmin(Admin admin);
     }
 }

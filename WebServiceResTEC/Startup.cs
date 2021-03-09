@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using WebServiceResTEC.Data;
+using AutoMapper;
 
 namespace WebServiceResTEC
 {
@@ -33,6 +34,9 @@ namespace WebServiceResTEC
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebServiceResTEC", Version = "v1" });
             });
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddScoped<IRepo, DataRepo>();
         }
 

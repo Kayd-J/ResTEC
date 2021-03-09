@@ -1,6 +1,8 @@
 using WebServiceResTEC.Data;
 using WebServiceResTEC.Models;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+using WebServiceResTEC.DTOs;
 
 namespace WebServiceResTEC.Controllers
 {
@@ -10,18 +12,35 @@ namespace WebServiceResTEC.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IRepo _repository;
+        private readonly IMapper _mapper;
 
-        public AdminController(IRepo repository)
+        public AdminController(IRepo repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }        
 
         //GET api/admin
-        [HttpGet]
-        public ActionResult <Admin> GetAdmin()
+        [HttpGet(Name="GetAdmin")]
+        public ActionResult <AdminReadDto> GetAdmin()
         {
-            var admin = _repository.GetAdmin();
-            return Ok(admin);
+            var adminItem = _repository.GetAdmin();
+            return Ok(_mapper.Map<AdminReadDto>(adminItem));
+        }
+
+        //POST api/admin
+        [HttpPost(Name="CreateAdmin")]
+        public ActionResult <AdminReadDto> CreateAdmin(AdminCreateDto adminCreateDto)
+        {
+            var adminModel = _mapper.Map<Admin>(adminCreateDto);
+            _repository.CreateAdmin(adminModel);
+
+            var adminReadDto = _mapper.Map<AdminReadDto>(adminModel);
+
+            return CreatedAtAction(nameof(GetAdmin), adminReadDto);
+            //If it had an id:
+            //return CreatedAtRoute(nameof(GetAdminById), new {Id = adminReadDto.Id}, adminReadDto);
+
         }
     }
 }
