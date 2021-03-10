@@ -21,26 +21,11 @@ namespace WebServiceResTEC.Controllers
         }        
 
         //GET api/admin
-        [HttpGet(Name="GetAdmin")]
-        public ActionResult <AdminReadDto> GetAdmin()
+        [HttpGet]
+        public ActionResult <AdminDto> GetAdmin()
         {
             var adminItem = _repository.GetAdmin();
-            return Ok(_mapper.Map<AdminReadDto>(adminItem));
-        }
-
-        //POST api/admin
-        [HttpPost(Name="CreateAdmin")]
-        public ActionResult <AdminReadDto> CreateAdmin(AdminCreateDto adminCreateDto)
-        {
-            var adminModel = _mapper.Map<Admin>(adminCreateDto);
-            _repository.CreateAdmin(adminModel);
-
-            var adminReadDto = _mapper.Map<AdminReadDto>(adminModel);
-
-            return CreatedAtAction(nameof(GetAdmin), adminReadDto);
-            //If it had an id:
-            //return CreatedAtRoute(nameof(GetAdminById), new {Id = adminReadDto.Id}, adminReadDto);
-
+            return Ok(_mapper.Map<AdminDto>(adminItem));
         }
     }
 }

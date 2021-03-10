@@ -8,6 +8,12 @@ namespace WebServiceResTEC.Data
     public interface IRepo
     {
         Admin GetAdmin();
-        void CreateAdmin(Admin admin);
+
+        IEnumerable<Dish> GetAllDishes();
+        Dish GetDishById(int id);
+        void UpdateDish(Dish dish);
+        void DeleteDish(Dish dish);
+        
+        void CreateDish(Dish dish);
     }
 }

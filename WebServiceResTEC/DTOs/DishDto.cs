@@ -1,10 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WebServiceResTEC.Models{
+namespace WebServiceResTEC.DTOs{
 
-    public class Dish
+    public class DishDto
     {
-        [Key]
         public int Id { get; set;}
         [Required]
         public string Name { get; set;}

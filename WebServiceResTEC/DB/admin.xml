@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Admin>
+﻿<Admin>
   <Email>user@user.com</Email>
   <Password>admin123</Password>
 </Admin>
