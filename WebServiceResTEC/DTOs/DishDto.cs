@@ -4,6 +4,7 @@ namespace WebServiceResTEC.DTOs{
 
     public class DishDto
     {
+        [Required]
         public int Id { get; set;}
         [Required]
         public string Name { get; set;}

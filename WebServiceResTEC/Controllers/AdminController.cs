@@ -1,5 +1,4 @@
 using WebServiceResTEC.Data;
-using WebServiceResTEC.Models;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using WebServiceResTEC.DTOs;

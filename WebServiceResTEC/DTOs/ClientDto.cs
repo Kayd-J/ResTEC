@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebServiceResTEC.Models{
+namespace WebServiceResTEC.DTOs{
 
-    public class Client
+    public class ClientDto
     {
-        [Key]
+        [Required]
         public int IdCard { get; set;}
         [Required]
         public string Password { get; set;}

@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using WebServiceResTEC.Models;
 
 namespace WebServiceResTEC.DTOs{
     public class MenuDto
     {
-
+        [Required]
         public int Id { get; set;}
         [Required]
         public string Type { get; set;}

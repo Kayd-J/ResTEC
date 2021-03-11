@@ -21,5 +21,8 @@ namespace WebServiceResTEC.Data
         void UpdateMenu(Menu menu);
         void DeleteMenu(Menu menu);
         void CreateMenu(Menu menu);
+
+        IEnumerable<Client> GetAllClients();
+        void CreateClient(Client client);
     }
 }

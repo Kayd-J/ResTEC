@@ -225,5 +225,75 @@ namespace WebServiceResTEC.Data
             xmlDoc.Element("Menus").Element("LastMenuId").Value = menu.Id.ToString();
             xmlDoc.Save("DB\\menus.xml");
         }
+
+        public void CreateClient(Client client)
+        {
+            if(client == null)
+            {
+                throw new ArgumentNullException(nameof(client));
+            }
+
+            XDocument xmlDoc = XDocument.Load("DB\\clients.xml");
+
+            XElement phoneNumbers = new XElement("PhoneNumbers");
+            foreach (int PhoneNumber in client.PhoneNumbers)
+            {
+                phoneNumbers.Add(new XElement ("PhoneNumber", PhoneNumber.ToString()));
+            }
+
+            xmlDoc.Element("Clients").Add(
+                new XElement("Client",
+                    new XElement("IdCard", client.IdCard),
+                    new XElement("Password", client.Password),
+                    new XElement("Name", client.Name),
+                    new XElement(phoneNumbers),
+                    new XElement("Email", client.Email),
+                    new XElement("BirthDate", client.BirthDate),
+                    new XElement("Address", 
+                        new XElement("Province", client.Address.ElementAt(0)),
+                        new XElement("Canton", client.Address.ElementAt(1)),
+                        new XElement("District", client.Address.ElementAt(2))
+                    ),
+                    new XElement("AmountOrders", client.AmountOrders)
+                )
+            );
+
+            xmlDoc.Save("DB\\clients.xml");
+        }
+
+        public IEnumerable<Client> GetAllClients()
+        {
+            List<Client> clients = new List<Client>();      
+            XDocument doc = XDocument.Load("DB\\clients.xml");  
+            foreach (XElement element in doc.Descendants("Clients")  
+                .Descendants("Client"))  
+            {  
+                Client client = new Client();  
+                client.IdCard = Int32.Parse(element.Element("IdCard").Value);  
+                client.Password = element.Element("Password").Value; 
+                client.Name = element.Element("Name").Value;  
+
+
+                List<int> phoneNumbers = new List<int>();
+                foreach (XElement phoneNumber in element.Descendants("PhoneNumber"))
+                {
+                    phoneNumbers.Add(Int32.Parse(phoneNumber.Value));
+                }
+                client.PhoneNumbers = phoneNumbers;
+
+                client.Email  = element.Element ("Email").Value;
+                client.BirthDate  = element.Element ("BirthDate").Value;
+
+                List<string> address = new List<string>();
+                address.Add(element.Element("Address").Element("Province").Value);
+                address.Add(element.Element("Address").Element("Canton").Value);
+                address.Add(element.Element("Address").Element("District").Value);
+                client.Address = address;
+                
+                client.AmountOrders = Int32.Parse(element.Element("AmountOrders").Value);  
+                clients.Add(client);     
+            } 
+            return clients;  
+        }
     }
 }

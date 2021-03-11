@@ -1,18 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Clients>
-    <Client>
-        <IdCard>30519015</IdCard>
-        <Password>000333</Password>
-        <Name>Kevin Barrantes Cerdas</Name>
-        <PhoneNumbers>
-            <PhoneNumber>89482288</PhoneNumber>
-        </PhoneNumbers>
-        <Email>client@client.com</Email>
-        <BirthDate>16/03/96</BirthDate>
-        <Adress>
-            <Province>Cartago</Province>
-            <Canton>Paraiso</Canton>
-            <District>Orosi</District>
-        </Adress>
-        <AmountOrders>0</AmountOrders>
-    </Client>
+  <Client>
+    <IdCard>305190315</IdCard>
+    <Password>000333</Password>
+    <Name>Kevin Barrantes Cerdas</Name>
+    <PhoneNumbers>
+      <PhoneNumber>89482288</PhoneNumber>
+    </PhoneNumbers>
+    <Email>client@client.com</Email>
+    <BirthDate>16/03/96</BirthDate>
+    <Address>
+      <Province>Cartago</Province>
+      <Canton>Paraiso</Canton>
+      <District>Orosi</District>
+    </Address>
+    <AmountOrders>0</AmountOrders>
+  </Client>
+  <Client>
+    <IdCard>705240125</IdCard>
+    <Password>123456</Password>
+    <Name>Manuel Soto Valverde</Name>
+    <PhoneNumbers>
+      <PhoneNumber>89482287</PhoneNumber>
+      <PhoneNumber>88332114</PhoneNumber>
+    </PhoneNumbers>
+    <Email>client2@client.com</Email>
+    <BirthDate>25/05/99</BirthDate>
+    <Address>
+      <Province>Cartago</Province>
+      <Canton>Central</Canton>
+      <District>Loquesea</District>
+    </Address>
+    <AmountOrders>4</AmountOrders>
+  </Client>
 </Clients>
