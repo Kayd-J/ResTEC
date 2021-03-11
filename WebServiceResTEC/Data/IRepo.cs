@@ -13,7 +13,13 @@ namespace WebServiceResTEC.Data
         Dish GetDishById(int id);
         void UpdateDish(Dish dish);
         void DeleteDish(Dish dish);
-        
         void CreateDish(Dish dish);
+
+
+        IEnumerable<Menu> GetAllMenus();
+        Menu GetMenuById(int id);
+        void UpdateMenu(Menu menu);
+        void DeleteMenu(Menu menu);
+        void CreateMenu(Menu menu);
     }
 }

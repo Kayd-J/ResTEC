@@ -87,12 +87,6 @@ namespace WebServiceResTEC.Data
 
             dishToDelete.Remove();
 
-            // foreach (var e in dishToDelete)
-            // {
-            // e.Remove();
-
-            // }
-
             xmlDoc.Save("DB\\dishes.xml");
         }
 
@@ -117,6 +111,119 @@ namespace WebServiceResTEC.Data
             );
             xmlDoc.Element("Dishes").Element("LastDishId").Value = dish.Id.ToString();
             xmlDoc.Save("DB\\dishes.xml");
+        }
+
+        public IEnumerable<Menu> GetAllMenus()
+        {
+            List<Menu> menus = new List<Menu>();      
+            XDocument doc = XDocument.Load("DB\\menus.xml");  
+            foreach (XElement element in doc.Descendants("Menus")  
+                .Descendants("Menu"))  
+            {  
+                Menu menu = new Menu();  
+                menu.Id = Int32.Parse(element.Element("Id").Value);  
+                menu.Type = element.Element("Type").Value;  
+                menu.Calories  = Int32.Parse(element.Element ("Calories").Value);
+                List<int> dishes = new List<int>();
+                foreach (XElement dish in element.Descendants("Dish"))
+                {
+                    dishes.Add(Int32.Parse(dish.Value));
+                }
+                menu.Dishes = dishes;
+                menus.Add(menu);     
+            } 
+            return menus;  
+        }
+
+        public Menu GetMenuById(int id)
+        {
+            Menu menu = new Menu();  
+            XDocument doc = XDocument.Load("DB\\menus.xml");  
+            XElement element = doc.Element("Menus")  
+                                .Elements("Menu").Elements("Id").  
+                                SingleOrDefault(x => x.Value == id.ToString());
+            if (element != null)  
+            {  
+                XElement parent = element.Parent;  
+                menu.Id = Int32.Parse(parent.Element("Id").Value);  
+                menu.Type = parent.Element("Type").Value;  
+                menu.Calories  = Int32.Parse(parent.Element ("Calories").Value);
+                List<int> dishes = new List<int>();
+                foreach (XElement dish in parent.Descendants("Dish"))
+                {
+                    dishes.Add(Int32.Parse(dish.Value));
+                }
+                menu.Dishes = dishes;
+                return menu;
+            }  
+            return null;
+        }
+
+        public void UpdateMenu(Menu menu)
+        {
+            XDocument xmlDoc = XDocument.Load("DB\\menus.xml");  
+            var items = from item in xmlDoc.Descendants("Menu")
+                        where Int32.Parse(item.Element("Id").Value) == menu.Id
+                        select item;
+
+            foreach (XElement itemElement in items)
+            {
+                itemElement.SetElementValue("Type", menu.Type);
+                itemElement.SetElementValue("Calories", menu.Calories);
+                itemElement.SetElementValue("Dishes", "");
+                foreach (int dish in menu.Dishes)
+                {
+                    itemElement.Descendants("Dishes").FirstOrDefault().Add(
+                        new XElement ("Dish", dish.ToString())
+                    );
+                }
+            }
+            xmlDoc.Save("DB\\menus.xml");
+        }
+
+        public void DeleteMenu(Menu menu)
+        {
+            if(menu == null)
+            {
+                throw new ArgumentNullException(nameof(menu));
+            }
+            XDocument xmlDoc = XDocument.Load("DB\\menus.xml");  
+            var dishToDelete = from item in xmlDoc.Descendants("Menu")
+                        where Int32.Parse(item.Element("Id").Value) == menu.Id
+                        select item;
+
+            dishToDelete.Remove();
+
+            xmlDoc.Save("DB\\menus.xml");
+        }
+
+        public void CreateMenu(Menu menu)
+        {
+            if(menu == null)
+            {
+                throw new ArgumentNullException(nameof(menu));
+            }
+
+            XDocument xmlDoc = XDocument.Load("DB\\menus.xml");
+            menu.Id = Int32.Parse(xmlDoc.Element("Menus").Element("LastMenuId").Value)+ 1; 
+
+            XElement dishes = new XElement("Dishes");
+            foreach (int dish in menu.Dishes)
+            {
+                dishes.Add(new XElement ("Dish", dish.ToString()));
+            }
+
+            xmlDoc.Element("Menus").Add(
+                new XElement("Menu",
+                    new XElement("Id", menu.Id),
+                    new XElement("Type", menu.Type),
+                    new XElement("Calories", menu.Calories),
+                    new XElement(dishes)
+                )
+            );
+
+            xmlDoc.Element("Menus").Element("LastMenuId").Value = menu.Id.ToString();
+            xmlDoc.Save("DB\\menus.xml");
         }
     }
 }

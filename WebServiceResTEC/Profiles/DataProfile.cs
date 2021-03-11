@@ -11,6 +11,8 @@ namespace WebServiceResTEC.Profiles
             CreateMap<Admin, AdminDto>().ReverseMap();
             
             CreateMap<Dish, DishDto>().ReverseMap();
+            
+            CreateMap<Menu, MenuDto>().ReverseMap();
         }
     }
 

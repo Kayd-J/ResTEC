@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using WebServiceResTEC.DTOs;
 using System.Collections.Generic;
-using System;
 using Microsoft.AspNetCore.JsonPatch;
 
 namespace WebServiceResTEC.Controllers
@@ -25,7 +24,7 @@ namespace WebServiceResTEC.Controllers
 
         //GET api/dishes
         [HttpGet(Name="GetDishes")]
-        public ActionResult <DishDto> GetDishes()
+        public ActionResult <IEnumerable<DishDto>> GetDishes()
         {
             var dishesItem = _repository.GetAllDishes();
             return Ok(_mapper.Map<IEnumerable<DishDto>>(dishesItem));
@@ -42,7 +41,7 @@ namespace WebServiceResTEC.Controllers
             return NotFound();
         }
 
-        //POST api/admin
+        //POST api/dishes
         [HttpPost]
         public ActionResult <DishDto> CreateDish(DishDto dishDto)
         {

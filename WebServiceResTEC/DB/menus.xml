@@ -1,12 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Menus>
-    <LastMenuId>0</LastMenuId>
-    <Menu>
-        <Id>0</Id>
-        <Type>Desayuno</Type>
-        <Calories>800</Calories>
-        <Dishes>
-            <Dish>0</Dish>
-            <Dish>1</Dish>
-        </Dishes>
-    </Menu>
+  <LastMenuId>5</LastMenuId>
+  <Menu>
+    <Id>0</Id>
+    <Type>Desayuno</Type>
+    <Calories>1000</Calories>
+    <Dishes>
+      <Dish>0</Dish>
+      <Dish>1</Dish>
+    </Dishes>
+  </Menu>
+  <Menu>
+    <Id>5</Id>
+    <Type>Almuerzo</Type>
+    <Calories>500</Calories>
+    <Dishes>
+      <Dish>1</Dish>
+    </Dishes>
+  </Menu>
 </Menus>
