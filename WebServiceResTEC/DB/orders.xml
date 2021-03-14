@@ -1,15 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Orders>
-    <LastOrderId>0</LastOrderId>
-    <Order>
-        <Id>0</Id>
-        <Date>07/03/21</Date>
-        <Time>18:35</Time>
-        <PrepTime>15</PrepTime>
-        <State>Sin realizar</State>
-	    <Dishes>
-	        <Dish>0</Dish>
-	        <Dish>1</Dish>
-	    </Dishes>
-	    <Chef>1</Chef>
-    </Order>
+  <LastOrderId>1</LastOrderId>
+  <Order>
+    <Id>0</Id>
+    <Date>07/03/21</Date>
+    <Time>18:35</Time>
+    <PrepTime>15</PrepTime>
+    <State>Sin realizar</State>
+    <Dishes>
+      <Dish>0</Dish>
+      <Dish>1</Dish>
+    </Dishes>
+    <Chef>1</Chef>
+  </Order>
+  <Order>
+    <Id>1</Id>
+    <Date>14/03/21</Date>
+    <Time>18:35</Time>
+    <PrepTime>5</PrepTime>
+    <State>Sin realizar</State>
+    <Dishes>
+      <Dish>0</Dish>
+    </Dishes>
+    <Chef>-1</Chef>
+  </Order>
 </Orders>

@@ -24,5 +24,8 @@ namespace WebServiceResTEC.Data
 
         IEnumerable<Client> GetAllClients();
         void CreateClient(Client client);
+
+        IEnumerable<Order> GetAllOrders();
+        void CreateOrder(Order order);
     }
 }

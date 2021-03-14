@@ -295,5 +295,64 @@ namespace WebServiceResTEC.Data
             } 
             return clients;  
         }
+
+        public void CreateOrder(Order order)
+        {
+            if(order == null)
+            {
+                throw new ArgumentNullException(nameof(order));
+            }
+
+            XDocument xmlDoc = XDocument.Load("DB\\orders.xml");
+            order.Id = Int32.Parse(xmlDoc.Element("Orders").Element("LastOrderId").Value)+ 1; 
+
+            XElement dishes = new XElement("Dishes");
+            foreach (int dish in order.Dishes)
+            {
+                dishes.Add(new XElement ("Dish", dish.ToString()));
+            }
+
+            xmlDoc.Element("Orders").Add(
+                new XElement("Order",
+                    new XElement("Id", order.Id),
+                    new XElement("Date", order.Date),
+                    new XElement("Time", order.Time),
+                    new XElement("PrepTime", order.PrepTime),
+                    new XElement("State", order.State),
+                    new XElement(dishes),
+                    new XElement("Chef", order.Chef)
+                )
+            );
+            
+            xmlDoc.Element("Orders").Element("LastOrderId").Value = order.Id.ToString();
+            xmlDoc.Save("DB\\orders.xml");
+        }
+
+        public IEnumerable<Order> GetAllOrders()
+        {
+            List<Order> orders = new List<Order>();      
+            XDocument doc = XDocument.Load("DB\\orders.xml");  
+            foreach (XElement element in doc.Descendants("Orders")  
+                .Descendants("Order"))  
+            {  
+                Order order = new Order();  
+                order.Id = Int32.Parse(element.Element("Id").Value);  
+                order.Date = element.Element("Date").Value; 
+                order.Time = element.Element("Time").Value;  
+                order.PrepTime = Int32.Parse(element.Element ("PrepTime").Value);
+                order.State = element.Element ("State").Value;
+
+                List<int> dishes = new List<int>();
+                foreach (XElement dish in element.Descendants("Dish"))
+                {
+                    dishes.Add(Int32.Parse(dish.Value));
+                }
+                order.Dishes = dishes;
+                order.Chef = Int32.Parse(element.Element ("Chef").Value);
+                
+                orders.Add(order);     
+            } 
+            return orders;
+        }
     }
 }
