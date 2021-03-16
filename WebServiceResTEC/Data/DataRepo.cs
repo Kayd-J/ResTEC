@@ -18,6 +18,25 @@ namespace WebServiceResTEC.Data
             admin.Password = element.Element("Password").Value; 
             return admin;
         }
+        public Chef GetAllChefs()
+        {
+            throw new NotImplementedException();
+        //     Chef chef = new Chef();  
+        //     XDocument doc = XDocument.Load("DB\\chefs.xml");  
+        //     XElement element = doc.Element("Chefs").Element("Chef");
+        //     Console.WriteLine(element);
+        //     chef.Id = Int32.Parse(element.Element("Id").Value);
+        //     chef.Name = element.Element("Name").Value;
+        //     chef.Email = element.Element("Email").Value;
+        //     chef.Password = element.Element("Password").Value;
+        //     List<int> orders = new List<int>();
+        //         foreach (XElement order in element.Descendants("Order"))
+        //         {
+        //             orders.Add(Int32.Parse(order.Value));
+        //         }
+        //     chef.Orders = orders;
+        //     return chef;
+        }
 
         public IEnumerable<Dish> GetAllDishes()
         {
@@ -32,6 +51,13 @@ namespace WebServiceResTEC.Data
                 dish.Description  = element.Element ("Description").Value;  
                 dish.Price  = Int32.Parse(element.Element ("Price").Value);
                 dish.AmountSales  = Int32.Parse(element.Element ("AmountSales").Value);
+                List<string> ingredients = new List<string>();
+                foreach (XElement ingredient in element.Descendants("Ingredient"))
+                {
+                    ingredients.Add(ingredient.Value);
+                }
+                dish.Ingredients = ingredients;
+                dish.PrepTime  = Int32.Parse(element.Element ("PrepTime").Value);
                 dishes.Add(dish);     
             }  
             return dishes;  
@@ -52,6 +78,13 @@ namespace WebServiceResTEC.Data
                 dish.Description  = parent.Element ("Description").Value;  
                 dish.Price  = Int32.Parse(parent.Element ("Price").Value);
                 dish.AmountSales  = Int32.Parse(parent.Element ("AmountSales").Value);
+                List<string> ingredients = new List<string>();
+                foreach (XElement ingredient in element.Descendants("Ingredient"))
+                {
+                    ingredients.Add(ingredient.Value);
+                }
+                dish.Ingredients = ingredients;
+                dish.PrepTime  = Int32.Parse(parent.Element ("PrepTime").Value);
                 return dish;
             }  
             return null;
@@ -70,6 +103,12 @@ namespace WebServiceResTEC.Data
                 itemElement.SetElementValue("Description", dish.Description);
                 itemElement.SetElementValue("Price", dish.Price);
                 itemElement.SetElementValue("AmountSales", dish.AmountSales);
+                foreach (string ingredient in dish.Ingredients)
+                {
+                    itemElement.Descendants("Ingredients").FirstOrDefault().Add(
+                        new XElement ("Ingredient", ingredient)
+                    );
+                }
             }
             xmlDoc.Save("DB\\dishes.xml");
         }
@@ -100,13 +139,23 @@ namespace WebServiceResTEC.Data
             XDocument xmlDoc = XDocument.Load("DB\\dishes.xml");
             dish.Id = Int32.Parse(xmlDoc.Element("Dishes").Element("LastDishId").Value)+ 1; 
 
+            XElement ingredients = new XElement("Ingredients");
+            var amountIngredients = 0;
+            foreach (string ingredient in dish.Ingredients)
+            {
+                ingredients.Add(new XElement ("Ingredient", ingredient));
+                amountIngredients += 1;
+            }
+            dish.PrepTime = amountIngredients*2;
             xmlDoc.Element("Dishes").Add(
                 new XElement("Dish",
                     new XElement("Id", dish.Id),
                     new XElement("Name", dish.Name),
                     new XElement("Description", dish.Description),
                     new XElement("Price", dish.Price),
-                    new XElement("AmountSales", 0)
+                    new XElement("AmountSales", 0),
+                    new XElement(ingredients),
+                    new XElement("PrepTime", dish.PrepTime)
                 )
             );
             xmlDoc.Element("Dishes").Element("LastDishId").Value = dish.Id.ToString();
@@ -354,5 +403,7 @@ namespace WebServiceResTEC.Data
             } 
             return orders;
         }
+
+        
     }
 }

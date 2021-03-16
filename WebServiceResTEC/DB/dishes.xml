@@ -1,12 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Dishes>
-  <LastDishId>4</LastDishId>
+  <LastDishId>8</LastDishId>
   <Dish>
     <Id>0</Id>
     <Name>Ensalada Verde</Name>
     <Description>Ensalada de lechuga, tomate y pepino</Description>
     <Price>200</Price>
     <AmountSales>0</AmountSales>
+    <Ingredients>
+      <Ingredient>Lechuga</Ingredient>
+      <Ingredient>Tomate</Ingredient>
+      <Ingredient>Pepino</Ingredient>
+    </Ingredients>
+    <PrepTime>6</PrepTime>
   </Dish>
   <Dish>
     <Id>1</Id>
@@ -14,5 +20,11 @@
     <Description>Fajitas de carne de res en salsa de tomate</Description>
     <Price>600</Price>
     <AmountSales>0</AmountSales>
+    <Ingredients>
+      <Ingredient>Carne de Res</Ingredient>
+      <Ingredient>Tomate</Ingredient>
+      <Ingredient>Cebolla</Ingredient>
+    </Ingredients>
+    <PrepTime>6</PrepTime>
   </Dish>
 </Dishes>

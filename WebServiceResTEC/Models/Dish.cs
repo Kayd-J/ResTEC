@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebServiceResTEC.Models{
@@ -12,7 +13,11 @@ namespace WebServiceResTEC.Models{
         public string Description { get; set;}
         [Required]
         public int Price {get; set;}
+        [Required]
+        public IEnumerable<string> Ingredients {get; set;}
         public int AmountSales {get; set;}
+        public int PrepTime {get; set;}
+
     }
 
 }
