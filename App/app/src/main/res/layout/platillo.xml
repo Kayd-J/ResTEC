@@ -10,11 +10,13 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:adjustViewBounds="true"
+        android:background="#FFFFFF"
         android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FF5722"
         android:orientation="vertical">
 
         <TextView
@@ -22,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:background="#FF5722"
             android:text="Nombre_Platillo" />
 
         <TextView
@@ -29,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:background="#FF5722"
             android:text="Descripcion_platillo" />
 
         <TextView
@@ -36,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:background="#FF5722"
             android:text="Costo_platillo" />
 
     </LinearLayout>

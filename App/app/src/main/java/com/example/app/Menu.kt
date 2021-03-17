@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.menu.*
 
-
 class Menu: AppCompatActivity() {
-
     /**
     Aquí se crea un pequeño arraylist, de todos los platillos que la aplicación administrará para poner
       a disposición del cliente, estos contienen el nombre, la descripción  y un código, este último tiene
@@ -25,7 +23,6 @@ class Menu: AppCompatActivity() {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.menu)
         IncializarPlatillos()
@@ -35,6 +32,5 @@ class Menu: AppCompatActivity() {
         recycleviewplatillos.layoutManager = LinearLayoutManager(this)
         val adapter = PlatillosAdapter(platillo, this)
         recycleviewplatillos.adapter = adapter
-
     }
 }

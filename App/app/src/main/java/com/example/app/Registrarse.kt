@@ -51,7 +51,7 @@ class Registrarse: AppCompatActivity() {
             //intent.putExtra("contrasena", registro_contrasena[0])
             startActivity(intent)
 
-            Toast.makeText(this@Registrarse, registro_usuario[0],Toast.LENGTH_LONG).show()
+            //Toast.makeText(this@Registrarse, registro_usuario.toString(),Toast.LENGTH_LONG).show()
 
             //Es importante cerrar la activdad, de lo contrario, se abrirá una nueva entana principal
             //Y la información de registro no se enviará
