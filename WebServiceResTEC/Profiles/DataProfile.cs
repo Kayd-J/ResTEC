@@ -8,7 +8,7 @@ namespace WebServiceResTEC.Profiles
     {
         public DataProfile()
         {
-            CreateMap<Admin, AdminDto>().ReverseMap();
+            CreateMap<LoginProfile, LoginDto>().ReverseMap();
             
             CreateMap<Chef, ChefDto>().ReverseMap();
             

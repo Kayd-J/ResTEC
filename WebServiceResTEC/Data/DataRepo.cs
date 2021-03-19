@@ -18,24 +18,61 @@ namespace WebServiceResTEC.Data
             admin.Password = element.Element("Password").Value; 
             return admin;
         }
-        public Chef GetAllChefs()
+
+        public LoginProfile CheckCredentials(LoginProfile loginProfile)
         {
-            throw new NotImplementedException();
-        //     Chef chef = new Chef();  
-        //     XDocument doc = XDocument.Load("DB\\chefs.xml");  
-        //     XElement element = doc.Element("Chefs").Element("Chef");
-        //     Console.WriteLine(element);
-        //     chef.Id = Int32.Parse(element.Element("Id").Value);
-        //     chef.Name = element.Element("Name").Value;
-        //     chef.Email = element.Element("Email").Value;
-        //     chef.Password = element.Element("Password").Value;
-        //     List<int> orders = new List<int>();
-        //         foreach (XElement order in element.Descendants("Order"))
-        //         {
-        //             orders.Add(Int32.Parse(order.Value));
-        //         }
-        //     chef.Orders = orders;
-        //     return chef;
+            List<Chef> chefs = (List<Chef>)GetAllChefs();
+            List<Client> clients = (List<Client>)GetAllClients();
+            Admin admin = GetAdmin();
+
+
+            if (admin.Email == loginProfile.Username && admin.Password == loginProfile.Password)
+            {
+                loginProfile.UserType = "Admin";
+                return loginProfile;
+            }
+
+            foreach(Chef chef in chefs)
+            {
+                if (chef.Email == loginProfile.Username && chef.Password == loginProfile.Password)
+                {
+                    loginProfile.UserType = "Chef";
+                    return loginProfile;
+                }
+            }
+            foreach(Client client in clients)
+            {
+                if (client.IdCard.ToString() == loginProfile.Username && client.Password == loginProfile.Password)
+                {
+                    loginProfile.UserType = "Client";
+                    return loginProfile;
+                }
+            }
+
+            return null;
+        }
+        public IEnumerable<Chef> GetAllChefs()
+        {
+            List<Chef> chefs = new List<Chef>();  
+            XDocument doc = XDocument.Load("DB\\chefs.xml");  
+            foreach (XElement element in doc.Descendants("Chefs")  
+                .Descendants("Chef")) 
+            {
+                Chef chef = new Chef();
+                chef.Id = Int32.Parse(element.Element("Id").Value);
+                chef.Name = element.Element("Name").Value;
+                chef.Email = element.Element("Email").Value;
+                chef.Password = element.Element("Password").Value;
+                List<int> orders = new List<int>();
+                    foreach (XElement order in element.Descendants("Order"))
+                    {
+                        orders.Add(Int32.Parse(order.Value));
+                    }
+                chef.Orders = orders;
+                chefs.Add(chef);
+            }
+            
+            return chefs;
         }
 
         public IEnumerable<Dish> GetAllDishes()

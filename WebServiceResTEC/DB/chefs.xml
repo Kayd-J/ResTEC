@@ -8,4 +8,13 @@
             <Order>0</Order>
         </Orders>
     </Chef>
+    <Chef>
+        <Id>2</Id>
+        <Name>Manuel Sibaja</Name>
+        <Email>manuelsibaja@gmail.com</Email>
+        <Password>789456</Password>
+        <Orders>
+            <Order>0</Order>
+        </Orders>
+    </Chef>
 </Chefs>

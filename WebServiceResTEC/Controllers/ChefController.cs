@@ -2,6 +2,7 @@ using WebServiceResTEC.Data;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using WebServiceResTEC.DTOs;
+using System.Collections.Generic;
 
 namespace WebServiceResTEC.Controllers
 {
@@ -24,7 +25,7 @@ namespace WebServiceResTEC.Controllers
         public ActionResult <ChefDto> GetAllChefs()
         {
             var chefItem = _repository.GetAllChefs();
-            return Ok(_mapper.Map<ChefDto>(chefItem));
+            return Ok(_mapper.Map<IEnumerable<ChefDto>>(chefItem));
         }
     }
 }

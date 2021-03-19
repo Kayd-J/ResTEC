@@ -8,7 +8,8 @@ namespace WebServiceResTEC.Data
     public interface IRepo
     {
         Admin GetAdmin();
-        Chef GetAllChefs();
+        LoginProfile CheckCredentials(LoginProfile loginProfile);
+        IEnumerable<Chef> GetAllChefs();
         IEnumerable<Dish> GetAllDishes();
         Dish GetDishById(int id);
         void UpdateDish(Dish dish);
