@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { LoginScreen } from './loginComponent/login.component';
 import { AdminWindowComponent } from './admin-window/admin-window.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginScreen,
-    AdminWindowComponent
+    AdminWindowComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

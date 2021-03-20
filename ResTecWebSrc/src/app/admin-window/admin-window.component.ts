@@ -15,4 +15,13 @@ export class AdminWindowComponent implements OnInit {
     this.dataService.getAllDishes().subscribe( data => this.dishes = data);
   }
 
+  addDish(name: string, description: string, price: number,  amountSales: number,  prepTime: number): void {
+    const ingredients: Array<string> = [];
+    this.dataService.addDish({ name, description, price, amountSales, ingredients, prepTime} as DishInterface)
+      .subscribe(dish => {
+        // @ts-ignore
+        this.dishes.push(dish);
+      });
+  }
+
 }
