@@ -6,7 +6,11 @@ import { AppComponent } from './app.component';
 import { LoginScreen } from './loginComponent/login.component';
 import { AdminWindowComponent } from './admin-window/admin-window.component';
 import { WorkbenchComponent } from './workbench/workbench.component';
-import { TestComponent } from './test/test.component';
+import { ActionRequiredComponent } from './action-required/action-required.component';
+import { CheffOwnedComponent } from './cheff-owned/cheff-owned.component';
+import { UpdateTableComponent } from './update-table/update-table.component';
+import { CreateComponent } from './create/create.component';
+import { CreateMenuComponent } from './create-menu/create-menu.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,11 @@ import { TestComponent } from './test/test.component';
     LoginScreen,
     AdminWindowComponent,
     WorkbenchComponent,
-    TestComponent
+    ActionRequiredComponent,
+    CheffOwnedComponent,
+    UpdateTableComponent,
+    CreateComponent,
+    CreateMenuComponent
   ],
   imports: [
     BrowserModule,

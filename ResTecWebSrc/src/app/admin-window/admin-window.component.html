@@ -38,25 +38,25 @@
             <li class="nav-item" >
               <a class="nav-link" href="#">
                 <span data-feather="file-text"></span>
-                Reporte Especial
+                Mejor FeedBack
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <span data-feather="file-text"></span>
-                Tiempo promedio
+                Mas Ordenes
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <span data-feather="file-text"></span>
-                Plato popular
+                Mejor Ganancia
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <span data-feather="file-text"></span>
-                Plato mas vendido
+                Mas Vendido
               </a>
             </li>
           </ul>
@@ -80,26 +80,43 @@
       </nav>
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Dashboard</h1>
+          <h1 class="h2">Mesa de trabajo</h1>
           <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
               <button type="button" class="btn btn-sm btn-outline-secondary" (click)="adminLog()">Admin</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary"(click)="cheffLog()">Cheff</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" (click)="cheffLog()">Cheff</button>
+            </div>
+          </div>
+        </div>
+        <!--WorkBench-->
+        <div class="container"  width="900" height="380" *ngIf ="admin; else mesaChef">
+          <div class="row">
+            <div class="col">
+              <app-create></app-create>
+            </div>
+            <div class="col">
+              <app-create-menu></app-create-menu>
+            </div>
+            <div class="col-6">
+              <app-update-table></app-update-table>
             </div>
           </div>
         </div>
 
-        <canvas class="my-4 w-100" id="myChart" width="900" height="380">
+        <ng-template #mesaChef>
+          <div class="container" width="900" height="380" >
+            <div class="row">
+              <div class="col">
+                <app-workbench></app-workbench>
+              </div>
+              <div class="col-6">
+                <app-action-required></app-action-required>
+              </div>
+            </div>
+          </div>
+        </ng-template>
 
-          <canvas class="my-4 w-100" id="larry" width="300" height="380"></canvas>
-          <canvas class="my-4 w-100" id="larrs" width="600" height="380"></canvas>
-        </canvas>
-
-        <div class="row" width="900" height="380">
-          <loginScreen *ngIf="notLogged; else elseBlock"></loginScreen>
-        </div>
-
-        <h2>Pedidos</h2>
+        <h2>{{admin? "Top 10":"Pedidos"}}</h2>
         <div class="table-responsive">
           <table class="table table-striped table-sm">
             <thead>
@@ -109,8 +126,6 @@
                 <th>{{admin? "Precio":"Plato"}}</th>
                 <th>{{admin? "Feedback":"Cheff"}}</th>
                 <th>{{admin? "Tipo":"Tomar"}}</th>
-
-
               </tr>
             </thead>
             <tbody>
@@ -124,7 +139,7 @@
                   <td> <button type="button">Take</button> </td>
                 </ng-template>
               </tr>
-              
+
           </table>
         </div>
       </main>
