@@ -2,6 +2,7 @@ using WebServiceResTEC.Data;
 using WebServiceResTEC.Models;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
+using System;
 using WebServiceResTEC.DTOs;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.JsonPatch;
@@ -45,6 +46,7 @@ namespace WebServiceResTEC.Controllers
         [HttpPost]
         public ActionResult <DishDto> CreateDish(DishDto dishDto)
         {
+            Console.WriteLine(dishDto);
             var dishModel = _mapper.Map<Dish>(dishDto);
             _repository.CreateDish(dishModel);
 

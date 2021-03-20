@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Menus>
-  <LastMenuId>5</LastMenuId>
+  <LastMenuId>8</LastMenuId>
   <Menu>
     <Id>0</Id>
     <Type>Desayuno</Type>
@@ -9,6 +9,7 @@
       <Dish>0</Dish>
       <Dish>1</Dish>
     </Dishes>
+    <Price>800</Price>
   </Menu>
   <Menu>
     <Id>5</Id>
@@ -17,5 +18,6 @@
     <Dishes>
       <Dish>1</Dish>
     </Dishes>
+    <Price>600</Price>
   </Menu>
 </Menus>

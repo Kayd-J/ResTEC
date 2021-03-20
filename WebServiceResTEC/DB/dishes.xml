@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Dishes>
-  <LastDishId>8</LastDishId>
+  <LastDishId>12</LastDishId>
   <Dish>
     <Id>0</Id>
     <Name>Ensalada Verde</Name>
@@ -26,5 +26,17 @@
       <Ingredient>Cebolla</Ingredient>
     </Ingredients>
     <PrepTime>6</PrepTime>
+  </Dish>
+  <Dish>
+    <Id>12</Id>
+    <Name>Pure de papa</Name>
+    <Description>Pure de papa con mantequilla</Description>
+    <Price>600</Price>
+    <AmountSales>0</AmountSales>
+    <Ingredients>
+      <Ingredient>Papas</Ingredient>
+      <Ingredient>Mantequilla</Ingredient>
+    </Ingredients>
+    <PrepTime>4</PrepTime>
   </Dish>
 </Dishes>

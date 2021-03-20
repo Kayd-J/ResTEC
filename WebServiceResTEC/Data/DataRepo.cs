@@ -209,13 +209,14 @@ namespace WebServiceResTEC.Data
                 Menu menu = new Menu();  
                 menu.Id = Int32.Parse(element.Element("Id").Value);  
                 menu.Type = element.Element("Type").Value;  
-                menu.Calories  = Int32.Parse(element.Element ("Calories").Value);
+                menu.Calories = Int32.Parse(element.Element ("Calories").Value);
                 List<int> dishes = new List<int>();
                 foreach (XElement dish in element.Descendants("Dish"))
                 {
                     dishes.Add(Int32.Parse(dish.Value));
                 }
                 menu.Dishes = dishes;
+                menu.Price = Int32.Parse(element.Element ("Price").Value);
                 menus.Add(menu);     
             } 
             return menus;  
@@ -240,6 +241,7 @@ namespace WebServiceResTEC.Data
                     dishes.Add(Int32.Parse(dish.Value));
                 }
                 menu.Dishes = dishes;
+                menu.Price = Int32.Parse(element.Element ("Price").Value);
                 return menu;
             }  
             return null;
@@ -294,17 +296,23 @@ namespace WebServiceResTEC.Data
             menu.Id = Int32.Parse(xmlDoc.Element("Menus").Element("LastMenuId").Value)+ 1; 
 
             XElement dishes = new XElement("Dishes");
+            int price = 0;
             foreach (int dish in menu.Dishes)
             {
                 dishes.Add(new XElement ("Dish", dish.ToString()));
+                price += GetDishById(dish).Price;
             }
+
+            menu.Price = price;
+            Console.WriteLine(menu.Price);
 
             xmlDoc.Element("Menus").Add(
                 new XElement("Menu",
                     new XElement("Id", menu.Id),
                     new XElement("Type", menu.Type),
                     new XElement("Calories", menu.Calories),
-                    new XElement(dishes)
+                    new XElement(dishes),
+                    new XElement("Price", menu.Price)
                 )
             );
 

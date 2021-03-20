@@ -13,6 +13,8 @@ namespace WebServiceResTEC.Models{
         public int Calories { get; set;}
         [Required]
         public IEnumerable<int> Dishes {get; set;}
+
+        public int Price {get; set;}
     }
 
 }

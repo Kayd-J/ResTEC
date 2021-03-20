@@ -3,4 +3,6 @@ export interface MenuInterface {
   type: string;
   calories: number;
   dishes: Array<number>;
+  price: number;
+
 }

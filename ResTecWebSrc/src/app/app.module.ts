@@ -11,6 +11,8 @@ import { CheffOwnedComponent } from './cheff-owned/cheff-owned.component';
 import { UpdateTableComponent } from './update-table/update-table.component';
 import { CreateComponent } from './create/create.component';
 import { CreateMenuComponent } from './create-menu/create-menu.component';
+import {HttpClientModule} from '@angular/common/http';
+import {MessagesComponent} from './messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { CreateMenuComponent } from './create-menu/create-menu.component';
     CheffOwnedComponent,
     UpdateTableComponent,
     CreateComponent,
-    CreateMenuComponent
+    CreateMenuComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
