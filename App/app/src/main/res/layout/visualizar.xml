@@ -11,6 +11,7 @@
         android:layout_width="191dp"
         android:layout_height="77dp"
         android:background="#009688"
+        android:gravity="center|center_horizontal"
         android:text="RESTEC"
         android:textSize="36sp"
         app:fontFamily="monospace"
@@ -23,9 +24,10 @@
 
     <TextView
         android:id="@+id/lblpreparacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Preparación"
+        android:layout_width="222dp"
+        android:layout_height="92dp"
+        android:gravity="center"
+        android:text="Orden lista"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,16 +35,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.317" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="301dp"
-        android:layout_height="74dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnconcretar"

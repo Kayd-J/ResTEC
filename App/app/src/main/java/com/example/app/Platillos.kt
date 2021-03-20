@@ -5,5 +5,6 @@ data class Platillos (
     val codigo_platillo:String,
     val descripcion_platillo:String,
     val imagen_platillo: String,
-    val precio_platillo:Int
+    val precio_platillo:Int,
+    val tiempo:Int
 )

@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Favor ingresar datos válidos", Toast.LENGTH_LONG).show()
             }
             else{
-                startActivity(Intent(this, Menu::class.java))
+                startActivity(Intent(this, Cartilla::class.java))
             }
 
             //Se realiza una comprobación para corroboar el usuario y la contraseña
@@ -68,23 +68,6 @@ class MainActivity : AppCompatActivity() {
         //Botón de acceso a la ventana de Registro
         btnregistrarse.setOnClickListener {
             startActivity(Intent(this, Registrarse::class.java))
-        }
-    }
-
-    fun Almacenamiento(elemento: String, elementos: ArrayList<String>): ArrayList<String>{
-
-        //Si el tamaño del array es igual a cero se almacena el elemento en dicha
-        if (elementos.size == 0){
-            elementos.add(elemento)
-            return elementos
-        }
-        //Si la posición es diferente de cero se toma la medida del largo del array y se le resta una
-        //posición para colocar el nuevo elemento en la última posición del array y así no tener
-        //conflictos
-        else{
-            val posicion = elementos.size -1
-            elementos.add(posicion, elemento)
-            return elementos
         }
     }
 }

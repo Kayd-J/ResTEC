@@ -43,9 +43,10 @@ class Registrarse: AppCompatActivity() {
             val registro_usuario = Almacenamiento(usuario, usuarios_registrados_r)
             val registro_contrasena = Almacenamiento(contrasena, contrsenas_registradas_r)
 
-            //Envío de datos
-            //Tomar los datos del registro y contraseña que se hayan registrado
-            //Para enviarlos hacia la ventana principal
+            /*
+                Envío de datos tomar los datos del registro y contraseña que se hayan registrado
+                Para enviarlos hacia la ventana principal
+            */
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("usuario", registro_usuario)
             //intent.putExtra("contrasena", registro_contrasena[0])
@@ -58,10 +59,6 @@ class Registrarse: AppCompatActivity() {
             this.finish()
         }
 
-        /**
-        Esta seccion de código son las encargadas de poder mostrar las provincias, distritos
-        y cantones en los spinner de la interfaz cuando el usuario realice la selección de la mismas
-         **/
     }
 
     /**

@@ -26,6 +26,8 @@
         <activity android:name=".GenerarPedido" />
         <activity android:name=".Visualizar" />
         <activity android:name=".Menu" />
+        <activity android:name=".Cartilla" />
+        <activity android:name=".Feedback" />
     </application>
 
 </manifest>
