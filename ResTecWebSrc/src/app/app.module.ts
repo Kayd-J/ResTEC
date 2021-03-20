@@ -5,16 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginScreen } from './loginComponent/login.component';
 import { AdminWindowComponent } from './admin-window/admin-window.component';
+import { WorkbenchComponent } from './workbench/workbench.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginScreen,
-    AdminWindowComponent
+    AdminWindowComponent,
+    WorkbenchComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
+  ],
+  entryComponents: [WorkbenchComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

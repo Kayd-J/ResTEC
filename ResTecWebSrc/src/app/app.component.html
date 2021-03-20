@@ -9,27 +9,16 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" (click)="clickLog()">{{notLogged? "Log In":"Log Out"}}</a>
         </li>
-        <li *ngIf="notLogged" class="nav-item">
-          <a class="nav-link" href="#">Admin</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
   </div>
-
-  
 </nav>
-
-<loginScreen *ngIf="notLogged"></loginScreen>
-
 <router-outlet></router-outlet>
-<div>
-  <app-admin-window></app-admin-window> -->
-</div>
+<loginScreen *ngIf="notLogged; else elseBlock"></loginScreen>
+<ng-template #elseBlock>
+  <!--este else carga la pagina del usuario master (cheff/admin)-->
+  <app-admin-window  ></app-admin-window>
+</ng-template>
+
+
 
