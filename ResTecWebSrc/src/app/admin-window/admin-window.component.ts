@@ -13,6 +13,8 @@ export class AdminWindowComponent implements OnInit {
   menus: MenuInterface[] | undefined;
   constructor(private dataService: DataService) { }
 
+  admin: boolean = true;
+
   ngOnInit(): void {
     this.getAllDishes();
   }
@@ -34,4 +36,7 @@ export class AdminWindowComponent implements OnInit {
     this.dataService.getAllMenus().subscribe( data => this.menus = data);
   }
 
+  //Funciones que sustituyen el inicio de seccion de un cheff o admin
+  cheffLog() { this.admin = false;}
+  adminLog() { this.admin = true; }
 }
