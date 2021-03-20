@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MessageService} from './message.service';
+import {MenuInterface} from './models/menu.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import {MessageService} from './message.service';
 export class DataService {
 
   private dishesUrl = '/api/dishes';
+  private menusUrl = '/api/menus';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -28,6 +30,21 @@ export class DataService {
     return this.http.post<DishInterface>(this.dishesUrl, dish, this.httpOptions).pipe(
       tap((newDish: DishInterface) => this.log(`added dish w/ id=${newDish.id}`)),
       catchError(this.handleError<DishInterface>('addDish'))
+    );
+  }
+
+  getAllMenus(): Observable<MenuInterface[]> {
+    this.messageService.add('DataService: fetched menus');
+    return this.http.get<MenuInterface[]>(this.menusUrl)
+      .pipe(
+        catchError(this.handleError<MenuInterface[]>('getAllDishes', []))
+      );
+  }
+
+  addMenu(menu: MenuInterface): Observable<MenuInterface> {
+    return this.http.post<MenuInterface>(this.menusUrl, menu, this.httpOptions).pipe(
+      tap((newMenu: MenuInterface) => this.log(`added menu w/ id=${newMenu.id}`)),
+      catchError(this.handleError<MenuInterface>('addMenu'))
     );
   }
 

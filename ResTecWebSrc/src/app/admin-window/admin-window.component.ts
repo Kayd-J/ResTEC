@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { DishInterface } from '../models/dish.interface';
+import {MenuInterface} from '../models/menu.interface';
 
 @Component({
   selector: 'app-admin-window',
@@ -9,9 +10,14 @@ import { DishInterface } from '../models/dish.interface';
 })
 export class AdminWindowComponent implements OnInit {
   dishes: DishInterface[] | undefined;
+  menus: MenuInterface[] | undefined;
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.getAllDishes();
+  }
+
+  getAllDishes(): void{
     this.dataService.getAllDishes().subscribe( data => this.dishes = data);
   }
 
@@ -22,6 +28,10 @@ export class AdminWindowComponent implements OnInit {
         // @ts-ignore
         this.dishes.push(dish);
       });
+  }
+
+  getAllMenus(): void{
+    this.dataService.getAllMenus().subscribe( data => this.menus = data);
   }
 
 }
