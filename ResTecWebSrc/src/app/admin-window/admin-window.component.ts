@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { DishInterface } from '../models/dish.interface';
 
 @Component({
   selector: 'app-admin-window',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-window.component.css']
 })
 export class AdminWindowComponent implements OnInit {
-
-  constructor() { }
+  dishes: DishInterface[] | undefined;
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.dataService.getAllDishes().subscribe( data => this.dishes = data);
   }
 
 }
