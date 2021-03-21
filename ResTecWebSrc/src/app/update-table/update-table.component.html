@@ -20,10 +20,10 @@
     <tr *ngFor="let menu of menus">
       <!--<td><input type="text" class="form-control mb-2" id="a" placeholder="se obtiene de BS"></td>
 <td><input type="text" class="form-control mb-2" id="a" placeholder="se obtiene de BS"></td>-->
-      <td><input type="text" class="form-control mb-2" id="a" placeholder="{{menu.id}}"></td>
-      <td><input type="text" class="form-control mb-2" id="a" placeholder="{{menu.type}}"></td>
-      <td><input type="text" class="form-control mb-2" id="a" placeholder="{{menu.calories}}"></td>
-      <td><input type="text" class="form-control mb-2" id="a" placeholder="{{menu.price}}"></td>
+      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="menu.id"></td>
+      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="menu.type"></td>
+      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="menu.calories"></td>
+      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="menu.price"></td>
       <td><button type="submit" class="btn btn-primary mb-2">Actualizar</button></td>
     </tr>
     </tbody>
@@ -51,12 +51,12 @@
     <tr *ngFor="let dish of dishes">
       <!--<td><input type="text" class="form-control mb-2" id="a" placeholder="se obtiene de BS"></td>
 <td><input type="text" class="form-control mb-2" id="a" placeholder="se obtiene de BS"></td>-->
-      <td><input type="text" class="form-control mb-2" id="a" placeholder="{{dish.id}}"></td>
-      <td><input type="text" class="form-control mb-2" id="a" placeholder="{{dish.name}}"></td>
-      <td><input type="text" class="form-control mb-2" id="a" placeholder="{{dish.description}}"></td>
-      <td><input type="text" class="form-control mb-2" id="a" placeholder="{{dish.price}}"></td>
-      <td><input type="text" class="form-control mb-2" id="a" placeholder="{{dish.amountSales}}"></td>
-      <td><input type="text" class="form-control mb-2" id="a" placeholder="{{dish.prepTime}}"></td>
+      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.id"></td>
+      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.name"></td>
+      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.description"></td>
+      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.price"></td>
+      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.amountSales"></td>
+      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.prepTime"></td>
       <td><button type="submit" class="btn btn-primary mb-2">Actualizar</button></td>
     </tr>
     </tbody>

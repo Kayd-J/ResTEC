@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {OrderInterface} from '../models/order.interface';
+import {DataService} from '../data.service';
 
 @Component({
   selector: 'app-workbench',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkbenchComponent implements OnInit {
 
-  constructor() { }
+  chefEmail = 'erick.barrantes12@gmail.com';
+  orders: OrderInterface[] | undefined;
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.getOrdersByChef();
+  }
+
+  getOrdersByChef(): void{
+    this.dataService.getOrderByChef(this.chefEmail).subscribe( data => this.orders = data);
   }
 
 }

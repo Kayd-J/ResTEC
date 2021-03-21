@@ -5,19 +5,17 @@
          width="100%">
     <thead>
       <tr>
-        <th scope="col">Plato</th>
-        <th scope="col">Pedido</th>
-        <th scope="col">Tiempo</th>
-        <th scope="col"></th>
+        <th scope="col">Fecha de pedido</th>
+        <th scope="col">Hora de pedido</th>
+        <th scope="col">Tiempo de preparación</th>
       </tr>
     </thead>
     <tbody>
       <!--For cuando se sepa que reciba-->
-      <tr>
-       
-        <td>Dato de DB</td>
-        <td>Dato de DB</td>
-        <td>Dato de DB</td>
+      <tr *ngFor="let order of orders">
+        <td>{{order.date}}</td>
+        <td>{{order.time}}</td>
+        <td>{{order.prepTime}}</td>
         <td><button type="submit" class="btn btn-primary mb-2">Terminar</button></td>
       </tr>
     </tbody>

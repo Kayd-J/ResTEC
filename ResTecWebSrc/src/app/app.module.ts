@@ -13,6 +13,7 @@ import { CreateComponent } from './create/create.component';
 import { CreateMenuComponent } from './create-menu/create-menu.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MessagesComponent} from './messages/messages.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {MessagesComponent} from './messages/messages.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   entryComponents: [WorkbenchComponent
   ],

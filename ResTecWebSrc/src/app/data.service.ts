@@ -5,14 +5,16 @@ import { catchError, map, tap } from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MessageService} from './message.service';
 import {MenuInterface} from './models/menu.interface';
+import {OrderInterface} from './models/order.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private dishesUrl = '/api/dishes';
-  private menusUrl = '/api/menus';
+  private dishesUrl = '/api/dishes/';
+  private menusUrl = '/api/menus/';
+  private ordersUrl = '/api/orders/';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -37,7 +39,7 @@ export class DataService {
     this.messageService.add('DataService: fetched menus');
     return this.http.get<MenuInterface[]>(this.menusUrl)
       .pipe(
-        catchError(this.handleError<MenuInterface[]>('getAllDishes', []))
+        catchError(this.handleError<MenuInterface[]>('getAllMenus', []))
       );
   }
 
@@ -46,6 +48,22 @@ export class DataService {
       tap((newMenu: MenuInterface) => this.log(`added menu w/ id=${newMenu.id}`)),
       catchError(this.handleError<MenuInterface>('addMenu'))
     );
+  }
+
+  getAllOrders(): Observable<OrderInterface[]> {
+    this.messageService.add('DataService: fetched orders');
+    return this.http.get<OrderInterface[]>(this.ordersUrl)
+      .pipe(
+        catchError(this.handleError<OrderInterface[]>('getAllOrders', []))
+      );
+  }
+
+  getOrderByChef(email: string): Observable<OrderInterface[]> {
+    this.messageService.add('DataService: fetched orders');
+    return this.http.get<OrderInterface[]>(this.ordersUrl + email)
+      .pipe(
+        catchError(this.handleError<OrderInterface[]>('getAllOrders', []))
+      );
   }
 
   // tslint:disable-next-line:typedef
@@ -65,7 +83,7 @@ export class DataService {
 
   // tslint:disable-next-line:typedef
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.messageService.add(`DataService: ${message}`);
   }
 
 

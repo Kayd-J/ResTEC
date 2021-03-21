@@ -1,6 +1,5 @@
 <Chefs>
     <Chef>
-        <Id>1</Id>
         <Name>Erick Barrantes Cerdas</Name>
         <Email>erick.barrantes12@gmail.com</Email>
         <Password>123456</Password>
@@ -9,7 +8,6 @@
         </Orders>
     </Chef>
     <Chef>
-        <Id>2</Id>
         <Name>Manuel Sibaja</Name>
         <Email>manuelsibaja@gmail.com</Email>
         <Password>789456</Password>

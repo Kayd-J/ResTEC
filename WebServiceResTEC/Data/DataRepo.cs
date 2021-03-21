@@ -59,7 +59,6 @@ namespace WebServiceResTEC.Data
                 .Descendants("Chef")) 
             {
                 Chef chef = new Chef();
-                chef.Id = Int32.Parse(element.Element("Id").Value);
                 chef.Name = element.Element("Name").Value;
                 chef.Email = element.Element("Email").Value;
                 chef.Password = element.Element("Password").Value;
@@ -442,9 +441,38 @@ namespace WebServiceResTEC.Data
                     dishes.Add(Int32.Parse(dish.Value));
                 }
                 order.Dishes = dishes;
-                order.Chef = Int32.Parse(element.Element ("Chef").Value);
+                order.Chef = element.Element ("Chef").Value;
                 
                 orders.Add(order);     
+            } 
+            return orders;
+        }
+
+        public IEnumerable<Order> GetOrdersByChef(string email)
+        {
+            List<Order> orders = new List<Order>();      
+            XDocument doc = XDocument.Load("DB\\orders.xml");  
+            foreach (XElement element in doc.Descendants("Orders")  
+                .Descendants("Order"))  
+            {  
+                if(element.Element ("Chef").Value == email){
+                    Order order = new Order();  
+                    order.Id = Int32.Parse(element.Element("Id").Value);  
+                    order.Date = element.Element("Date").Value; 
+                    order.Time = element.Element("Time").Value;  
+                    order.PrepTime = Int32.Parse(element.Element ("PrepTime").Value);
+                    order.State = element.Element ("State").Value;
+
+                    List<int> dishes = new List<int>();
+                    foreach (XElement dish in element.Descendants("Dish"))
+                    {
+                        dishes.Add(Int32.Parse(dish.Value));
+                    }
+                    order.Dishes = dishes;
+                    order.Chef = element.Element ("Chef").Value;
+                    
+                    orders.Add(order);
+                }     
             } 
             return orders;
         }

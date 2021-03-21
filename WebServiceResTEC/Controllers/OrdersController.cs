@@ -29,6 +29,14 @@ namespace WebServiceResTEC.Controllers
             return Ok(_mapper.Map<IEnumerable<OrderDto>>(orderItem));
         }
 
+        //GET api/admin
+        [HttpGet("{email}")]
+        public ActionResult <OrderDto> GetOrdersByChef(string email)
+        {
+            var orderItem = _repository.GetOrdersByChef(email);
+            return Ok(_mapper.Map<IEnumerable<OrderDto>>(orderItem));
+        }
+
         //POST api/clients
         [HttpPost]
         public ActionResult <OrderDto> CreateOrder(OrderDto orderDto)

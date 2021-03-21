@@ -46,7 +46,6 @@ namespace WebServiceResTEC.Controllers
         [HttpPost]
         public ActionResult <DishDto> CreateDish(DishDto dishDto)
         {
-            Console.WriteLine(dishDto);
             var dishModel = _mapper.Map<Dish>(dishDto);
             _repository.CreateDish(dishModel);
 

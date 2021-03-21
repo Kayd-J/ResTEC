@@ -5,7 +5,6 @@ namespace WebServiceResTEC.DTOs{
 
     public class ChefDto
     {
-        public int Id { get; set;}
         [Required]
         public string Name { get; set;}
         [Required]

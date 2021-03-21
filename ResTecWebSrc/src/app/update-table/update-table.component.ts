@@ -17,7 +17,7 @@ export class UpdateTableComponent implements OnInit {
   ngOnInit(): void {
     this.getAllDishes();
     this.getAllMenus();
-  }
+    }
 
   getAllDishes(): void{
     this.dataService.getAllDishes().subscribe( data => this.dishes = data);

@@ -18,7 +18,7 @@ namespace WebServiceResTEC.DTOs{
         [Required]
         public IEnumerable<int> Dishes { get; set;}
         [Required]
-        public int Chef { get; set;}
+        public string Chef { get; set;}
     }
 
 }

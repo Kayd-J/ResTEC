@@ -6,7 +6,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-    
+
   </header>
 
   <div class="container-fluid">
@@ -97,9 +97,9 @@
             <div class="col">
               <app-create-menu></app-create-menu>
             </div>
-            <div class="col-6">
-              <app-update-table></app-update-table>
-            </div>
+          </div>
+          <div class="row">
+            <app-update-table></app-update-table>
           </div>
         </div>
 
@@ -117,15 +117,16 @@
         </ng-template>
 
         <h2>{{admin? "Top 10":"Pedidos"}}</h2>
-        <div class="table-responsive">
+        <div class="table-responsive" *ngIf="admin; then reportTable else ordersTable"></div>
+        <ng-template #reportTable>
           <table class="table table-striped table-sm">
             <thead>
               <tr>
-                <th>{{admin? "Posicion":"Pedido"}}</th>
-                <th>{{admin? "Nombre":"Tiempo"}}</th>
-                <th>{{admin? "Precio":"Plato"}}</th>
-                <th>{{admin? "Feedback":"Cheff"}}</th>
-                <th>{{admin? "Tipo":"Tomar"}}</th>
+                <th>Posicion</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Feedback</th>
+                <th>Tipo</th>
               </tr>
             </thead>
             <tbody>
@@ -134,14 +135,37 @@
                 <td>random</td>
                 <td>data</td>
                 <td>placeholder</td>
-                <td *ngIf="admin; else chefTakes">Tipo</td>
-                <ng-template #chefTakes>
-                  <td> <button type="button">Take</button> </td>
-                </ng-template>
+                <td>Tipo</td>
               </tr>
-
+            </tbody>
           </table>
-        </div>
+        </ng-template>
+        <ng-template #ordersTable>
+          <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+              <th>{{admin? "Posicion":"Fecha de pedido"}}</th>
+              <th>{{admin? "Nombre":"Hora de pedido"}}</th>
+              <th>{{admin? "Precio":"Tiempo de preparación"}}</th>
+              <th>{{admin? "Feedback":"Estado del pedido"}}</th>
+              <th>{{admin? "Tipo":"Chef"}}</th>
+              <th>{{admin? "":""}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let order of orders">
+              <td>{{order.date}}</td>
+              <td>{{order.time}}</td>
+              <td>{{order.prepTime}}</td>
+              <td>{{order.state}}</td>
+              <td>{{order.chef}}</td>
+              <td>
+                <button type="button" (click)="printOrder()">Take</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </ng-template>
       </main>
     </div>
   </div>

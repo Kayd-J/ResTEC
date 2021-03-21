@@ -21,7 +21,6 @@ export class CreateComponent implements OnInit {
     const ingredients: Array<string> = [];
     const amountSales = 0;
     const prepTime = 0;
-    this.dataService.addDish({ name, description, price, amountSales, ingredients, prepTime} as DishInterface).subscribe();
+    this.dataService.addDish({name, description, price, amountSales, ingredients, prepTime} as DishInterface).subscribe();
   }
-
 }

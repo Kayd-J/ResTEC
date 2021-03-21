@@ -5,7 +5,7 @@
       <label class="sr-only" for="inlineFormInput">Nombre del Plato</label>
       <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Pinto, Chiverre, Ensalada Verde, etc...">
     </div>
-  
+
     <div>
       <label class="sr-only" for="tipoDePlatot">Tipo de plato</label>
       <select class="form-control form-control-sm" id="tipoDePlato">
@@ -22,13 +22,10 @@
     </div>
     <div class="col-auto">
       <label class="sr-only" for="inlineFormInput">Calorias</label>
-        <div>
-          <span class="text-muted">Dato DB</span>
-        </div>
-        <p></p>
+      <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Kcal">
     </div>
     <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-2">Crear</button>
+      <button type="submit" class="btn btn-primary mb-2" (click)="addMenu('Cafecito', 400)">Crear</button>
     </div>
   </div>
 </form>
