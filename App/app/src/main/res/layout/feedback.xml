@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="	#efb758">
 
     <TextView
         android:id="@+id/lblrestec3"
         android:layout_width="191dp"
         android:layout_height="77dp"
-        android:background="#009688"
+        android:background="	#efb758"
+        android:gravity="center"
         android:text="RESTEC"
+        android:textColor="#c34129"
         android:textSize="36sp"
         app:fontFamily="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,6 +31,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="usuario"
+        android:textColor="#c34129"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.557"
@@ -40,6 +43,7 @@
         android:id="@+id/lblfecha_hora"
         android:layout_width="236dp"
         android:layout_height="53dp"
+        android:textColor="#c34129"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +73,7 @@
         android:gravity="top|left"
         android:inputType="textPersonName"
         android:text="comentario"
+        android:textColor="#c34129"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
@@ -89,14 +94,16 @@
 
     <Button
         android:id="@+id/btnenviar"
-        android:layout_width="102dp"
-        android:layout_height="56dp"
+        android:layout_width="118dp"
+        android:layout_height="62dp"
+        android:background="	#bdbda3"
         android:text="Enviar"
+        android:textColor="#c34129"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.961" />
+        app:layout_constraintVertical_bias="0.976" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
