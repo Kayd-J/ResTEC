@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import {OrderInterface} from '../models/order.interface';
+import {DishInterface} from '../models/dish.interface';
 
 @Component({
   selector: 'app-admin-window',
@@ -9,12 +10,14 @@ import {OrderInterface} from '../models/order.interface';
 })
 export class AdminWindowComponent implements OnInit {
   orders: OrderInterface[] | undefined;
+  topDishes: DishInterface[] | undefined;
   constructor(private dataService: DataService) { }
 
   admin: boolean = true;
 
   ngOnInit(): void {
     this.getAllOrders();
+    this.getBestSellingDishes();
   }
 
   // Funciones que sustituyen el inicio de seccion de un cheff o admin
@@ -25,5 +28,9 @@ export class AdminWindowComponent implements OnInit {
 
   getAllOrders(): void{
     this.dataService.getAllOrders().subscribe( data => this.orders = data);
+  }
+
+  private getBestSellingDishes() {
+    this.dataService.getBestSellingDishes().subscribe( data => this.topDishes = data);
   }
 }

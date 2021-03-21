@@ -9,12 +9,12 @@ namespace WebServiceResTEC.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ChefController : ControllerBase
+    public class ChefsController : ControllerBase
     {
         private readonly IRepo _repository;
         private readonly IMapper _mapper;
 
-        public ChefController(IRepo repository, IMapper mapper)
+        public ChefsController(IRepo repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

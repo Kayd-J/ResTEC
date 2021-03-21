@@ -15,6 +15,7 @@ export class DataService {
   private dishesUrl = '/api/dishes/';
   private menusUrl = '/api/menus/';
   private ordersUrl = '/api/orders/';
+  private reportsUrl = '/api/reports/';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -79,6 +80,14 @@ export class DataService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
+  }
+
+  getBestSellingDishes(): Observable<DishInterface[]> {
+    this.messageService.add('DataService: fetched best selling dishes');
+    return this.http.get<DishInterface[]>(this.reportsUrl + 'topselling')
+      .pipe(
+        catchError(this.handleError<DishInterface[]>('getAllDishes', []))
+      );
   }
 
   // tslint:disable-next-line:typedef

@@ -477,6 +477,29 @@ namespace WebServiceResTEC.Data
             return orders;
         }
 
+        public IEnumerable<Dish> GetBestSellingDishes()
+        {
+            List<Dish> allDishes = (List<Dish>) GetAllDishes();
+            List<Dish> sortedList = allDishes.OrderBy(o => o.AmountSales).ToList();
+            sortedList.Reverse();
+            return sortedList.Take(10);
+        }
+
+        public IEnumerable<Dish> GetBestProfitDishes()
+        {
+            List<Dish> allDishes = (List<Dish>) GetAllDishes();
+            List<Dish> sortedList = allDishes.OrderBy(o => (o.AmountSales * o.Price)).ToList();
+            sortedList.Reverse();
+            return sortedList.Take(10);
+        }
+
+        public IEnumerable<Client> GetClientsByAmountOrders()
+        {
+            List<Client> allClients = (List<Client>) GetAllClients();
+            List<Client> sortedList = allClients.OrderBy(o => o.AmountOrders).ToList();
+            sortedList.Reverse();
+            return sortedList.Take(10);
+        }
         
     }
 }

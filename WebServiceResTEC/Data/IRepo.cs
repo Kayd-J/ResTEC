@@ -28,8 +28,15 @@ namespace WebServiceResTEC.Data
 
         IEnumerable<Order> GetAllOrders();
         void CreateOrder(Order order);
-
         IEnumerable<Order> GetOrdersByChef(string email);
+
+        IEnumerable<Dish> GetBestSellingDishes();
+        IEnumerable<Dish> GetBestProfitDishes();
+        IEnumerable<Client> GetClientsByAmountOrders();
+
+
+        
+
 
     }
 }
