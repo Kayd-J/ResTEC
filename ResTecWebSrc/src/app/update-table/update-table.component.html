@@ -1,3 +1,4 @@
+<script src="../models/menu.interface.ts"></script>
 <div class="overflow-auto">
   <h4>Menus</h4>
   <table class="table table-responsive-sm table-hover table-striped" cellspacing="0"
@@ -11,6 +12,7 @@
       <th scope="col">Id</th>
       <th scope="col">Tipo</th>
       <th scope="col">Calorias</th>
+      <th scope="col">Platos</th>
       <th scope="col">Precio</th>
       <th scope="col"></th>
     </tr>
@@ -20,9 +22,28 @@
     <tr *ngFor="let menu of menus">
       <!--<td><input type="text" class="form-control mb-2" id="a" placeholder="se obtiene de BS"></td>
 <td><input type="text" class="form-control mb-2" id="a" placeholder="se obtiene de BS"></td>-->
-      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="menu.id"></td>
-      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="menu.type"></td>
+      <td><label  class="form-control mb-2" id="a">{{menu.id}}</label></td>
+      <td>
+        <div>
+          <select class="form-control form-control-sm" id="inputTipoDePlato" [(ngModel)]="menu.type">
+            <option>Desayuno</option>
+            <option>Almuerzo</option>
+            <option>Cafe</option>
+            <option>Cena</option>
+            <option>Merienda</option>
+          </select>
+        </div>
+      </td>
       <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="menu.calories"></td>
+      <td>
+        <table *ngFor="let dish of menu.dishes; let i = index">
+          <tbody>
+          <td>
+            <input type="text" class="form-control mb-2" id="a" [(ngModel)]="menu.dishes[i]">
+          </td>
+          </tbody>
+        </table>
+      </td>
       <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="menu.price"></td>
       <td><button type="submit" class="btn btn-primary mb-2">Actualizar</button></td>
     </tr>
@@ -42,6 +63,7 @@
       <th scope="col">Descripción</th>
       <th scope="col">Precio</th>
       <th scope="col">Cantidad de ventas</th>
+      <th scope="col">Ingredientes</th>
       <th scope="col">Tiempo de preparación</th>
       <th scope="col"></th>
     </tr>
@@ -51,11 +73,20 @@
     <tr *ngFor="let dish of dishes">
       <!--<td><input type="text" class="form-control mb-2" id="a" placeholder="se obtiene de BS"></td>
 <td><input type="text" class="form-control mb-2" id="a" placeholder="se obtiene de BS"></td>-->
-      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.id"></td>
+      <td><label type="text" class="form-control mb-2" id="a">{{dish.id}}</label></td>
       <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.name"></td>
       <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.description"></td>
       <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.price"></td>
       <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.amountSales"></td>
+      <td>
+        <table *ngFor="let ingredient of dish.ingredients; let i = index">
+        <tbody>
+            <td>
+            <input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.ingredients[i]">
+            </td>
+          </tbody>
+        </table>
+      </td>
       <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.prepTime"></td>
       <td><button type="submit" class="btn btn-primary mb-2">Actualizar</button></td>
     </tr>

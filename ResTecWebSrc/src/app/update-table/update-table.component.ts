@@ -27,4 +27,11 @@ export class UpdateTableComponent implements OnInit {
     this.dataService.getAllMenus().subscribe( data => this.menus = data);
   }
 
+  // updateMenu(idStr: string, type: string, caloriesStr: string, dishes: number[]): void {
+  //   const price = 0;
+  //   const id = Number(idStr);
+  //   const calories = Number(caloriesStr);
+  //   this.dataService.updateMenu({id, type, calories, dishes, price} as MenuInterface).subscribe();
+  // }
+
 }

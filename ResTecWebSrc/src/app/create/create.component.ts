@@ -17,10 +17,10 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addDish(name: string, description: string, price: number): void {
-    const ingredients: Array<string> = [];
+  addDish(name: string, description: string, priceStr: string, ingredients: string[] ): void {
     const amountSales = 0;
     const prepTime = 0;
+    const price = Number(priceStr);
     this.dataService.addDish({name, description, price, amountSales, ingredients, prepTime} as DishInterface).subscribe();
   }
 }

@@ -36,6 +36,13 @@ export class DataService {
     );
   }
 
+  updateDish(dish: DishInterface): Observable<DishInterface> {
+    return this.http.put<DishInterface>(this.dishesUrl + dish.id, dish, this.httpOptions).pipe(
+      tap((newDish: DishInterface) => this.log(`updated dish w/ id=${newDish.id}`)),
+      catchError(this.handleError<DishInterface>('updateDish'))
+    );
+  }
+
   getAllMenus(): Observable<MenuInterface[]> {
     this.messageService.add('DataService: fetched menus');
     return this.http.get<MenuInterface[]>(this.menusUrl)
@@ -48,6 +55,13 @@ export class DataService {
     return this.http.post<MenuInterface>(this.menusUrl, menu, this.httpOptions).pipe(
       tap((newMenu: MenuInterface) => this.log(`added menu w/ id=${newMenu.id}`)),
       catchError(this.handleError<MenuInterface>('addMenu'))
+    );
+  }
+
+  updateMenu(menu: MenuInterface): Observable<MenuInterface> {
+    return this.http.put<MenuInterface>(this.menusUrl + menu.id, menu, this.httpOptions).pipe(
+      tap((newMenu: MenuInterface) => this.log(`updated menu w/ id=${newMenu.id}`)),
+      catchError(this.handleError<MenuInterface>('updateMenu'))
     );
   }
 
