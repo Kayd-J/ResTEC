@@ -1,0 +1,17 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace WebServiceResTEC.DTOs{
+
+    public class ChefDto
+    {
+        [Required]
+        public string Name { get; set;}
+        [Required]
+        public string Email { get; set;}
+        [Required]
+        public string Password { get; set;}
+        public IEnumerable<int> Orders { get; set;}
+    }
+
+}

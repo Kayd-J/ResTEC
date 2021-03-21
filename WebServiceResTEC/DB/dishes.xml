@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dishes>
+  <LastDishId>12</LastDishId>
+  <Dish>
+    <Id>0</Id>
+    <Name>Ensalada Verde</Name>
+    <Description>Ensalada de lechuga, tomate y pepino</Description>
+    <Price>200</Price>
+    <AmountSales>0</AmountSales>
+    <Ingredients>
+      <Ingredient>Lechuga</Ingredient>
+      <Ingredient>Tomate</Ingredient>
+      <Ingredient>Pepino</Ingredient>
+    </Ingredients>
+    <PrepTime>6</PrepTime>
+  </Dish>
+  <Dish>
+    <Id>1</Id>
+    <Name>Carne en salsa</Name>
+    <Description>Fajitas de carne de res en salsa de tomate</Description>
+    <Price>600</Price>
+    <AmountSales>1</AmountSales>
+    <Ingredients>
+      <Ingredient>Carne de Res</Ingredient>
+      <Ingredient>Tomate</Ingredient>
+      <Ingredient>Cebolla</Ingredient>
+    </Ingredients>
+    <PrepTime>6</PrepTime>
+  </Dish>
+  <Dish>
+    <Id>12</Id>
+    <Name>Pure de papa</Name>
+    <Description>Pure de papa con mantequilla</Description>
+    <Price>600</Price>
+    <AmountSales>8</AmountSales>
+    <Ingredients>
+      <Ingredient>Papas</Ingredient>
+      <Ingredient>Mantequilla</Ingredient>
+    </Ingredients>
+    <PrepTime>4</PrepTime>
+  </Dish>
+</Dishes>

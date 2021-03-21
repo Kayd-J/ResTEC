@@ -1,0 +1,23 @@
+<h4>Mis pedidos</h4>
+<p>Recuerde mantener Orden y Calidad!</p>
+<div class="overflow-auto">
+  <table class="table table-responsive-sm table-hover table-striped" cellspacing="0"
+         width="100%">
+    <thead>
+      <tr>
+        <th scope="col">Fecha de pedido</th>
+        <th scope="col">Hora de pedido</th>
+        <th scope="col">Tiempo de preparación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--For cuando se sepa que reciba-->
+      <tr *ngFor="let order of orders">
+        <td>{{order.date}}</td>
+        <td>{{order.time}}</td>
+        <td>{{order.prepTime}}</td>
+        <td><button type="submit" class="btn btn-primary mb-2">Terminar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

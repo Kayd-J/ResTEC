@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using WebServiceResTEC.Data;
+using AutoMapper;
+using Newtonsoft.Json.Serialization;
 
 namespace WebServiceResTEC
 {
@@ -28,12 +30,17 @@ namespace WebServiceResTEC
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebServiceResTEC", Version = "v1" });
             });
-            services.AddScoped<ITestRepo, MockTestRepo>();
+            services.AddControllers().AddNewtonsoftJson(s => {
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddScoped<IRepo, DataRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
