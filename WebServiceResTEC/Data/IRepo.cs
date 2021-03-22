@@ -27,8 +27,11 @@ namespace WebServiceResTEC.Data
         void CreateClient(Client client);
 
         IEnumerable<Order> GetAllOrders();
+        Order GetOrderById(int id);
         void CreateOrder(Order order);
         IEnumerable<Order> GetOrdersByChef(string email);
+        Order UpdateOrder(Order order);
+        void DeleteOrder(Order order);
 
         IEnumerable<Dish> GetBestSellingDishes();
         IEnumerable<Dish> GetBestProfitDishes();

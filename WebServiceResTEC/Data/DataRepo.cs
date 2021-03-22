@@ -233,14 +233,14 @@ namespace WebServiceResTEC.Data
                 XElement parent = element.Parent;  
                 menu.Id = Int32.Parse(parent.Element("Id").Value);  
                 menu.Type = parent.Element("Type").Value;  
-                menu.Calories  = Int32.Parse(parent.Element ("Calories").Value);
+                menu.Calories = Int32.Parse(parent.Element("Calories").Value);
                 List<int> dishes = new List<int>();
-                foreach (XElement dish in parent.Descendants("Dish"))
+                foreach (XElement dish in element.Descendants("Dish"))
                 {
                     dishes.Add(Int32.Parse(dish.Value));
                 }
                 menu.Dishes = dishes;
-                menu.Price = Int32.Parse(element.Element ("Price").Value);
+                menu.Price  = Int32.Parse(parent.Element ("Price").Value);
                 return menu;
             }  
             return null;
@@ -447,6 +447,34 @@ namespace WebServiceResTEC.Data
             return orders;
         }
 
+         public Order GetOrderById(int id)
+        {
+            Order order = new Order();  
+            XDocument doc = XDocument.Load("DB\\orders.xml");  
+            XElement element = doc.Element("Orders")  
+                                .Elements("Order").Elements("Id").  
+                                SingleOrDefault(x => x.Value == id.ToString());
+            if(element != null) {  
+                XElement parent = element.Parent;  
+                order.Id = Int32.Parse(parent.Element("Id").Value);  
+                order.Date = parent.Element("Date").Value; 
+                order.Time = parent.Element("Time").Value;  
+                order.PrepTime = Int32.Parse(parent.Element("PrepTime").Value);
+                order.State = parent.Element("State").Value;
+
+                List<int> dishes = new List<int>();
+                foreach (XElement dish in element.Descendants("Dish"))
+                {
+                    dishes.Add(Int32.Parse(dish.Value));
+                }
+                order.Dishes = dishes;
+                order.Chef = parent.Element("Chef").Value;
+                
+                return order;
+            }
+            return null;
+        }
+
         public IEnumerable<Order> GetOrdersByChef(string email)
         {
             List<Order> orders = new List<Order>();      
@@ -474,6 +502,38 @@ namespace WebServiceResTEC.Data
                 }     
             } 
             return orders;
+        }
+
+        public Order UpdateOrder(Order order)
+        {
+            XDocument xmlDoc = XDocument.Load("DB\\orders.xml");  
+            var items = from item in xmlDoc.Descendants("Order")
+                        where Int32.Parse(item.Element("Id").Value) == order.Id
+                        select item;
+
+            foreach (XElement itemElement in items)
+            {
+                itemElement.SetElementValue("State", order.State);
+                itemElement.SetElementValue("Chef", order.Chef);
+            }
+            xmlDoc.Save("DB\\orders.xml");
+            return order;
+        }
+
+        public void DeleteOrder(Order order)
+        {
+            if(order == null)
+            {
+                throw new ArgumentNullException(nameof(order));
+            }
+            XDocument xmlDoc = XDocument.Load("DB\\orders.xml");  
+            var orderToDelete = from item in xmlDoc.Descendants("Order")
+                        where Int32.Parse(item.Element("Id").Value) == order.Id
+                        select item;
+
+            orderToDelete.Remove();
+
+            xmlDoc.Save("DB\\orders.xml");
         }
 
         public IEnumerable<Dish> GetBestSellingDishes()

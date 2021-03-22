@@ -46,6 +46,13 @@ export class DataService {
     );
   }
 
+  deleteDish(dishId: number): Observable<{}> {
+    // @ts-ignore
+    return this.http.delete(this.dishesUrl + dishId, this.httpOptions).pipe(
+      catchError(this.handleError('deleteDish'))
+    );
+  }
+
   getAllMenus(): Observable<MenuInterface[]> {
     this.messageService.add('DataService: fetched menus');
     return this.http.get<MenuInterface[]>(this.menusUrl)
@@ -68,6 +75,13 @@ export class DataService {
     );
   }
 
+  deleteMenu(menuId: number): Observable<{}> {
+    // @ts-ignore
+    return this.http.delete(this.menusUrl + menuId, this.httpOptions).pipe(
+      catchError(this.handleError('deleteMenu'))
+    );
+  }
+
   getAllOrders(): Observable<OrderInterface[]> {
     this.messageService.add('DataService: fetched orders');
     return this.http.get<OrderInterface[]>(this.ordersUrl)
@@ -80,8 +94,22 @@ export class DataService {
     this.messageService.add('DataService: fetched orders');
     return this.http.get<OrderInterface[]>(this.ordersUrl + email)
       .pipe(
-        catchError(this.handleError<OrderInterface[]>('getAllOrders', []))
+        catchError(this.handleError<OrderInterface[]>('getOrdersByChef', []))
       );
+  }
+
+  updateOrder(order: OrderInterface): Observable<OrderInterface> {
+    return this.http.put<OrderInterface>(this.ordersUrl + order.id, order, this.httpOptions).pipe(
+      tap((newOrder: OrderInterface) => this.log(`updated order w/ id=${newOrder.id}`)),
+      catchError(this.handleError<OrderInterface>('updateOrder'))
+    );
+  }
+
+  deleteOrder(orderId: number): Observable<{}> {
+    // @ts-ignore
+    return this.http.delete(this.ordersUrl + orderId, this.httpOptions).pipe(
+      catchError(this.handleError('deleteOrder'))
+    );
   }
 
   // tslint:disable-next-line:typedef

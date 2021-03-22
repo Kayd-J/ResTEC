@@ -11,7 +11,7 @@
       <Dish>0</Dish>
       <Dish>1</Dish>
     </Dishes>
-    <Chef></Chef>
+    <Chef>No asignado</Chef>
   </Order>
   <Order>
     <Id>1</Id>

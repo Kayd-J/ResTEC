@@ -43,4 +43,14 @@ export class UpdateTableComponent implements OnInit {
     this.dataService.updateDish({id, name, description, price, amountSales, ingredients, prepTime} as DishInterface).subscribe();
   }
 
+  deleteDish(idStr: string): void{
+    const id = Number(idStr);
+    this.dataService.deleteDish(id).subscribe();
+  }
+
+  deleteMenu(idStr: string): void{
+    const id = Number(idStr);
+    this.dataService.deleteMenu(id).subscribe();
+  }
+
 }

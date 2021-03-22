@@ -25,8 +25,6 @@ export class AdminWindowComponent implements OnInit {
   // Funciones que sustituyen el inicio de seccion de un cheff o admin
   cheffLog() { this.admin = false; }
   adminLog() { this.admin = true; }
-  printOrder(): void{
-  }
 
   getAllOrders(): void{
     this.dataService.getAllOrders().subscribe( data => this.orders = data);
@@ -38,4 +36,15 @@ export class AdminWindowComponent implements OnInit {
   private getBestClientsByOrders() {
     this.dataService.getBestClientsByOrders().subscribe( data => this.topClients = data);
   }
+  private takeOrder(idStr: string, chef: string)
+  {
+    const id = Number(idStr);
+    const state = 'En progreso';
+    const date = '';
+    const time = 0;
+    const prepTime = 0;
+    const dishes = [0];
+    this.dataService.updateOrder({id, date, time, prepTime, state, dishes, chef} as OrderInterface).subscribe();
+  }
+
 }

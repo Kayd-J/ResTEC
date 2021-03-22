@@ -37,7 +37,7 @@ namespace WebServiceResTEC.Controllers
             return Ok(_mapper.Map<IEnumerable<OrderDto>>(orderItem));
         }
 
-        //POST api/clients
+        //POST api/orders
         [HttpPost]
         public ActionResult <OrderDto> CreateOrder(OrderDto orderDto)
         {
@@ -48,6 +48,35 @@ namespace WebServiceResTEC.Controllers
 
             return CreatedAtRoute(nameof(GetOrders), new {Id = newOrderDto.Id}, newOrderDto);
 
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult UpdateOrder(int id, OrderDto orderDto)
+        {
+            var orderFromRepo = _repository.GetOrderById(id);
+            orderDto.Id = orderFromRepo.Id;
+            if(orderFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(orderDto, orderFromRepo);
+            _repository.UpdateOrder(orderFromRepo);
+
+            return NoContent();
+        }
+
+        //DELETE api/dishes/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteOrder(int id)
+        {
+            var orderFromRepo = _repository.GetOrderById(id);
+            if(orderFromRepo == null)
+            {
+                return NotFound();
+            }
+            _repository.DeleteOrder(orderFromRepo);
+            return NoContent();
         }
     }
 }

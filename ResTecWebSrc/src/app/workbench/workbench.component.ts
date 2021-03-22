@@ -21,4 +21,9 @@ export class WorkbenchComponent implements OnInit {
     this.dataService.getOrderByChef(this.chefEmail).subscribe( data => this.orders = data);
   }
 
+  deleteOrder(idStr: string): void{
+    const id = Number(idStr);
+    this.dataService.deleteOrder(id).subscribe();
+  }
+
 }
