@@ -6,6 +6,11 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.administrar_carrito.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class AdministrarCarrito: AppCompatActivity() {
 
@@ -90,11 +95,39 @@ class AdministrarCarrito: AppCompatActivity() {
 
         //Botón de acceso a la ventana de Generar Pedido
         btnconfirmar.setOnClickListener {
+
+            if (lbltotal.text.toString() == "total"){
+                Toast.makeText(this, "Favor agregar un platillo al carrito", Toast.LENGTH_LONG).show()
+            }
+            else
+            {
             val intent = Intent(this, GenerarPedido::class.java)
             intent.putExtra("total", cantidad_producto.toString())
             intent.putExtra("orden", platillos_recibidos)
             intent.putExtra("tiempo", preparacion.toString())
             startActivity(intent)
+            }
+        }
+    }
+
+    private fun getRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("https://dog.ceo/api/breed/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    private fun searchByName(query:String){
+        CoroutineScope(Dispatchers.IO).launch {
+            val call = getRetrofit().create(ApiService::class.java).TomarDatos("$query/images")
+            val puppies = call.body()
+            runOnUiThread {
+                if(call.isSuccessful){
+
+                }else{
+                    
+                }
+            }
         }
     }
 }
