@@ -48,8 +48,8 @@ namespace WebServiceResTEC.Data
                     return loginProfile;
                 }
             }
-
-            return null;
+            loginProfile.UserType = "Invalid";
+            return loginProfile;
         }
         public IEnumerable<Chef> GetAllChefs()
         {
@@ -303,7 +303,6 @@ namespace WebServiceResTEC.Data
             }
 
             menu.Price = price;
-            Console.WriteLine(menu.Price);
 
             xmlDoc.Element("Menus").Add(
                 new XElement("Menu",

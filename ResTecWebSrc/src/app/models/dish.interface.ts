@@ -4,6 +4,6 @@ export interface DishInterface {
   description: string;
   price: number;
   amountSales: number;
-  ingredients: Array<string>;
+  ingredients: string[];
   prepTime: number;
 }

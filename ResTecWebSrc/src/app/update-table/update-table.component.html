@@ -15,6 +15,7 @@
       <th scope="col">Platos</th>
       <th scope="col">Precio</th>
       <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
@@ -25,7 +26,7 @@
       <td><label  class="form-control mb-2" id="a">{{menu.id}}</label></td>
       <td>
         <div>
-          <select class="form-control form-control-sm" id="inputTipoDePlato" [(ngModel)]="menu.type">
+          <select class="form-control form-control-sm" id="inputTipoDePlato" [(ngModel)]="menu.type" #menuType>
             <option>Desayuno</option>
             <option>Almuerzo</option>
             <option>Cafe</option>
@@ -34,7 +35,7 @@
           </select>
         </div>
       </td>
-      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="menu.calories"></td>
+      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="menu.calories" #menuCalories></td>
       <td>
         <table *ngFor="let dish of menu.dishes; let i = index">
           <tbody>
@@ -44,8 +45,9 @@
           </tbody>
         </table>
       </td>
-      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="menu.price"></td>
+      <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="menu.price" #menuPrice></td>
       <td><button type="submit" class="btn btn-primary mb-2">Actualizar</button></td>
+      <td><button type="submit" class="btn btn-primary mb-2">Eliminar</button></td>
     </tr>
     </tbody>
   </table>
@@ -65,6 +67,7 @@
       <th scope="col">Cantidad de ventas</th>
       <th scope="col">Ingredientes</th>
       <th scope="col">Tiempo de preparación</th>
+      <th scope="col"></th>
       <th scope="col"></th>
     </tr>
     </thead>
@@ -89,6 +92,7 @@
       </td>
       <td><input type="text" class="form-control mb-2" id="a" [(ngModel)]="dish.prepTime"></td>
       <td><button type="submit" class="btn btn-primary mb-2">Actualizar</button></td>
+      <td><button type="submit" class="btn btn-primary mb-2">Eliminar</button></td>
     </tr>
     </tbody>
   </table>

@@ -6,6 +6,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MessageService} from './message.service';
 import {MenuInterface} from './models/menu.interface';
 import {OrderInterface} from './models/order.interface';
+import {LoginInterface} from './models/login.interface';
+import {ClientInterface} from './models/client.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,7 @@ export class DataService {
   private menusUrl = '/api/menus/';
   private ordersUrl = '/api/orders/';
   private reportsUrl = '/api/reports/';
+  private loginUrl = '/api/login/';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -102,6 +105,30 @@ export class DataService {
       .pipe(
         catchError(this.handleError<DishInterface[]>('getAllDishes', []))
       );
+  }
+
+  getBestProfitDishes(): Observable<DishInterface[]> {
+    this.messageService.add('DataService: fetched best profit dishes');
+    return this.http.get<DishInterface[]>(this.reportsUrl + 'topprofit')
+      .pipe(
+        catchError(this.handleError<DishInterface[]>('getBestProfitDishes', []))
+      );
+  }
+
+  getBestClientsByOrders(): Observable<ClientInterface[]> {
+    this.messageService.add('DataService: fetched top clients by amount of orders');
+    return this.http.get<ClientInterface[]>(this.reportsUrl + 'toporders')
+      .pipe(
+        catchError(this.handleError<ClientInterface[]>('getBestClientsByOrders', []))
+      );
+  }
+
+  getLoginCredentials(loginCred: LoginInterface): Observable<LoginInterface>
+  {
+    return this.http.post<LoginInterface>(this.loginUrl, loginCred, this.httpOptions).pipe(
+      tap((logCredentials: LoginInterface) => this.log(`usertype logged: ${logCredentials.userType}`)),
+      catchError(this.handleError<LoginInterface>('getLoginCredentials'))
+    );
   }
 
   // tslint:disable-next-line:typedef

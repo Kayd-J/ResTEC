@@ -4,6 +4,6 @@ export interface OrderInterface {
   time: number;
   prepTime: number;
   state: string;
-  dishes: Array<number>;
+  dishes: number[];
   chef: string;
 }
