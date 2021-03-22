@@ -7,12 +7,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.app.databinding.ActivityMainBinding
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.administrar_carrito.*
 import kotlinx.android.synthetic.main.opciones_menu.*
 
 
 class Cartilla: AppCompatActivity() {
+
+    //private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
