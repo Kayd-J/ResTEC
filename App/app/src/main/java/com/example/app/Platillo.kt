@@ -1,6 +1,6 @@
 package com.example.app
 
-data class Platillos (
+data class Platillo (
     val nombre_platillo:String,
     val codigo_platillo:String,
     val descripcion_platillo:String,

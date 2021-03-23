@@ -6,13 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.menu.view.*
 import kotlinx.android.synthetic.main.platillo.view.*
 
-class PlatillosAdapter( val platillo:List<Platillos>, private val contexto: Context):RecyclerView.Adapter<PlatillosAdapter.AdaptadorPlatillos>(){
+class PlatillosAdapter(val platillo:List<Platillo>, private val contexto: Context):RecyclerView.Adapter<PlatillosAdapter.AdaptadorPlatillos>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdaptadorPlatillos {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -33,7 +31,7 @@ class PlatillosAdapter( val platillo:List<Platillos>, private val contexto: Cont
         var platillos_seleccionados = ArrayList<String>()
         var precio_platillos_seleccionados = ArrayList<Int>()
 
-        fun renderizar(platillo: Platillos){
+        fun renderizar(platillo: Platillo){
 
             view.lblnombreplatillo.text = platillo.nombre_platillo
             view.lbldescripcion.text = platillo.descripcion_platillo

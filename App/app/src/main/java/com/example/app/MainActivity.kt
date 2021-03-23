@@ -7,8 +7,13 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.app.services.DataService
+import com.example.app.services.ServiceBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +35,32 @@ class MainActivity : AppCompatActivity() {
         val contrasena_inpurt = findViewById<EditText>(R.id.inputcontrasena) as EditText
 
         val label = findViewById<TextView>(R.id.lblnombreu) as TextView
+
+        val dataService = ServiceBuilder.buildService(DataService::class.java)
+
+        val requestCall = dataService.getDishesList()
+
+        requestCall.enqueue(object: Callback<List<Platillo>> {
+            override fun onResponse(call: Call<List<Platillo>>, response: Response<List<Platillo>>) {
+                if (response.isSuccessful) {
+                    val dishesList = response.body()!!
+                    Toast.makeText(this@MainActivity,
+                            dishesList.toString(), Toast.LENGTH_LONG).show()
+                } else if(response.code() == 401) {
+                    Toast.makeText(this@MainActivity,
+                    "ERROR 401", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this@MainActivity, "Failed to retrieve dishes",
+                            Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<Platillo>>, t: Throwable) {
+                Toast.makeText(this@MainActivity,
+                        "ERROR Occurred" + t.toString(), Toast.LENGTH_LONG).show()
+            }
+        })
+
 
         //Se almacenan dos valores iniciales para las pruebas primarias
         // Usuario: estudiantea@estudiantes.ac.cr
