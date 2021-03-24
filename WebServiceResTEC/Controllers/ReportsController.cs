@@ -39,12 +39,20 @@ namespace WebServiceResTEC.Controllers
             return Ok(_mapper.Map<IEnumerable<DishDto>>(dishesItem));
         }
 
-        //GET api/reports/toporders
-        [HttpGet("toporders")]
+        //GET api/reports/topclients
+        [HttpGet("topclients")]
         public ActionResult <IEnumerable<ClientDto>> GetClientsByAmountOrders()
         {
             var clientsItem = _repository.GetClientsByAmountOrders();
             return Ok(_mapper.Map<IEnumerable<ClientDto>>(clientsItem));
+        }
+
+        //GET api/reports/toporders
+        [HttpGet("toporders")]
+        public ActionResult <IEnumerable<OrderDto>> GetOrdersByFeedBack()
+        {
+            var ordersItem = _repository.GetOrdersByFeedBack();
+            return Ok(_mapper.Map<IEnumerable<OrderDto>>(ordersItem));
         }
     }
 }

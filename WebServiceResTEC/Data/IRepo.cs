@@ -30,12 +30,13 @@ namespace WebServiceResTEC.Data
         Order GetOrderById(int id);
         void CreateOrder(Order order);
         IEnumerable<Order> GetOrdersByChef(string email);
-        Order UpdateOrder(Order order);
-        void DeleteOrder(Order order);
+        Order UpdateOrderState(Order order);
+        Order UpdateOrderFeedback(Order order);
 
         IEnumerable<Dish> GetBestSellingDishes();
         IEnumerable<Dish> GetBestProfitDishes();
         IEnumerable<Client> GetClientsByAmountOrders();
+        IEnumerable<Order> GetOrdersByFeedBack();
 
 
         

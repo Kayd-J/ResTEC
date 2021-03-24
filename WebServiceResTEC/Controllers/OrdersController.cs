@@ -21,7 +21,7 @@ namespace WebServiceResTEC.Controllers
             _mapper = mapper;
         }        
 
-        //GET api/admin
+        //GET api/order
         [HttpGet(Name="GetOrders")]
         public ActionResult <OrderDto> GetOrders()
         {
@@ -29,7 +29,7 @@ namespace WebServiceResTEC.Controllers
             return Ok(_mapper.Map<IEnumerable<OrderDto>>(orderItem));
         }
 
-        //GET api/admin
+        //GET api/order/{email}
         [HttpGet("{email}")]
         public ActionResult <OrderDto> GetOrdersByChef(string email)
         {
@@ -61,22 +61,22 @@ namespace WebServiceResTEC.Controllers
             }
 
             _mapper.Map(orderDto, orderFromRepo);
-            _repository.UpdateOrder(orderFromRepo);
+            _repository.UpdateOrderState(orderFromRepo);
 
             return NoContent();
         }
 
-        //DELETE api/dishes/{id}
-        [HttpDelete("{id}")]
-        public ActionResult DeleteOrder(int id)
-        {
-            var orderFromRepo = _repository.GetOrderById(id);
-            if(orderFromRepo == null)
-            {
-                return NotFound();
-            }
-            _repository.DeleteOrder(orderFromRepo);
-            return NoContent();
-        }
+        // //DELETE api/dishes/{id}
+        // [HttpDelete("{id}")]
+        // public ActionResult DeleteOrder(int id)
+        // {
+        //     var orderFromRepo = _repository.GetOrderById(id);
+        //     if(orderFromRepo == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     _repository.DeleteOrder(orderFromRepo);
+        //     return NoContent();
+        // }
     }
 }

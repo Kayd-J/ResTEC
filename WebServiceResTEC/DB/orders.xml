@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Orders>
-  <LastOrderId>1</LastOrderId>
+  <LastOrderId>4</LastOrderId>
   <Order>
     <Id>0</Id>
     <Date>07/03/21</Date>
@@ -12,16 +12,22 @@
       <Dish>1</Dish>
     </Dishes>
     <Chef>No asignado</Chef>
+    <Client>305190315</Client>
+    <FeedbackTime></FeedbackTime>
+    <FeedbackScore></FeedbackScore>
   </Order>
   <Order>
     <Id>1</Id>
     <Date>14/03/21</Date>
     <Time>20:05</Time>
     <PrepTime>5</PrepTime>
-    <State>Sin realizar</State>
+    <State>Terminado</State>
     <Dishes>
       <Dish>0</Dish>
     </Dishes>
     <Chef>erick.barrantes12@gmail.com</Chef>
+    <Client>305190315</Client>
+    <FeedbackTime>18:52</FeedbackTime>
+    <FeedbackScore>4.5</FeedbackScore>  
   </Order>
 </Orders>

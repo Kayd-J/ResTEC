@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using WebServiceResTEC.Models;
+using System.Globalization;
 
 namespace WebServiceResTEC.Data
 {
@@ -412,7 +413,10 @@ namespace WebServiceResTEC.Data
                     new XElement("PrepTime", order.PrepTime),
                     new XElement("State", order.State),
                     new XElement(dishes),
-                    new XElement("Chef", order.Chef)
+                    new XElement("Chef", order.Chef),
+                    new XElement("Client", order.Client),
+                    new XElement("FeedbackTime", ""),
+                    new XElement("FeedbackScore", "")
                 )
             );
             
@@ -441,6 +445,9 @@ namespace WebServiceResTEC.Data
                 }
                 order.Dishes = dishes;
                 order.Chef = element.Element ("Chef").Value;
+                order.Client = Int32.Parse(element.Element ("Client").Value);
+                order.FeedbackTime = element.Element ("FeedbackTime").Value;
+                order.FeedbackScore = element.Element ("FeedbackScore").Value;
                 
                 orders.Add(order);     
             } 
@@ -469,6 +476,9 @@ namespace WebServiceResTEC.Data
                 }
                 order.Dishes = dishes;
                 order.Chef = parent.Element("Chef").Value;
+                order.Client = Int32.Parse(parent.Element ("Client").Value);
+                order.FeedbackTime = parent.Element ("FeedbackTime").Value;
+                order.FeedbackScore = parent.Element ("FeedbackScore").Value;
                 
                 return order;
             }
@@ -497,6 +507,9 @@ namespace WebServiceResTEC.Data
                     }
                     order.Dishes = dishes;
                     order.Chef = element.Element ("Chef").Value;
+                    order.Client = Int32.Parse(element.Element ("Client").Value);
+                    order.FeedbackTime = element.Element ("FeedbackTime").Value;
+                    order.FeedbackScore = element.Element ("FeedbackScore").Value;
                     
                     orders.Add(order);
                 }     
@@ -504,7 +517,7 @@ namespace WebServiceResTEC.Data
             return orders;
         }
 
-        public Order UpdateOrder(Order order)
+        public Order UpdateOrderState(Order order)
         {
             XDocument xmlDoc = XDocument.Load("DB\\orders.xml");  
             var items = from item in xmlDoc.Descendants("Order")
@@ -520,20 +533,20 @@ namespace WebServiceResTEC.Data
             return order;
         }
 
-        public void DeleteOrder(Order order)
+        public Order UpdateOrderFeedback(Order order)
         {
-            if(order == null)
-            {
-                throw new ArgumentNullException(nameof(order));
-            }
             XDocument xmlDoc = XDocument.Load("DB\\orders.xml");  
-            var orderToDelete = from item in xmlDoc.Descendants("Order")
+            var items = from item in xmlDoc.Descendants("Order")
                         where Int32.Parse(item.Element("Id").Value) == order.Id
                         select item;
 
-            orderToDelete.Remove();
-
+            foreach (XElement itemElement in items)
+            {
+                itemElement.SetElementValue("FeedbackScore", order.FeedbackScore);
+                itemElement.SetElementValue("FeedbackTime", order.FeedbackTime);
+            }
             xmlDoc.Save("DB\\orders.xml");
+            return order;
         }
 
         public IEnumerable<Dish> GetBestSellingDishes()
@@ -556,6 +569,20 @@ namespace WebServiceResTEC.Data
         {
             List<Client> allClients = (List<Client>) GetAllClients();
             List<Client> sortedList = allClients.OrderBy(o => o.AmountOrders).ToList();
+            sortedList.Reverse();
+            return sortedList.Take(10);
+        }
+
+        public IEnumerable<Order> GetOrdersByFeedBack()
+        {
+            List<Order> allOrders = (List<Order>) GetAllOrders();
+            List<Order> finishedOrders = new List<Order>();
+            foreach(Order order in allOrders){
+                if (order.State == "Terminado"){
+                    finishedOrders.Add(order);
+                }
+            }
+            List<Order> sortedList = finishedOrders.OrderBy(o => float.Parse(o.FeedbackScore)).ToList();
             sortedList.Reverse();
             return sortedList.Take(10);
         }

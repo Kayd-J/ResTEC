@@ -145,9 +145,17 @@ export class DataService {
 
   getBestClientsByOrders(): Observable<ClientInterface[]> {
     this.messageService.add('DataService: fetched top clients by amount of orders');
-    return this.http.get<ClientInterface[]>(this.reportsUrl + 'toporders')
+    return this.http.get<ClientInterface[]>(this.reportsUrl + 'topclients')
       .pipe(
         catchError(this.handleError<ClientInterface[]>('getBestClientsByOrders', []))
+      );
+  }
+
+  getOrdersByFeedback(): Observable<OrderInterface[]> {
+    this.messageService.add('DataService: fetched top orders by feedback score');
+    return this.http.get<OrderInterface[]>(this.reportsUrl + 'toporders')
+      .pipe(
+        catchError(this.handleError<OrderInterface[]>('getOrdersByFeedback', []))
       );
   }
 
