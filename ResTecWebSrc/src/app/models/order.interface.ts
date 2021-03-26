@@ -6,4 +6,7 @@ export interface OrderInterface {
   state: string;
   dishes: number[];
   chef: string;
+  client: number;
+  feedbackTime: string;
+  feedbackScore: string;
 }

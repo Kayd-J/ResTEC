@@ -51,11 +51,7 @@ export class AdminWindowComponent implements OnInit {
   {
     const id = Number(idStr);
     const state = 'En progreso';
-    const date = '';
-    const time = 0;
-    const prepTime = 0;
-    const dishes = [0];
-    this.dataService.updateOrder({id, date, time, prepTime, state, dishes, chef} as OrderInterface).subscribe();
+    this.dataService.updateOrder({id, state, chef} as OrderInterface).subscribe();
   }
 
 }
