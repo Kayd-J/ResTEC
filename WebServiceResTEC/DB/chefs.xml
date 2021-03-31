@@ -1,15 +1,18 @@
 <Chefs>
     <Chef>
-        <Id>1</Id>
-        <Nombre>
-            <PrimerNombre>Erick</PrimerNombre>
-            <Apellido1>Barrantes</Apellido1>
-            <Apellido2>Cerdas</Apellido2>
-        </Nombre>
-        <Correo>erick.barrantes12@gmail.com</Correo>
-        <Contrasenia>123456</Contrasenia>
-        <Pedidos>
-            <Pedido>0</Pedido>
-        </Pedidos>
+        <Name>Erick Barrantes Cerdas</Name>
+        <Email>erick.barrantes12@gmail.com</Email>
+        <Password>123456</Password>
+        <Orders>
+            <Order>0</Order>
+        </Orders>
+    </Chef>
+    <Chef>
+        <Name>Manuel Sibaja</Name>
+        <Email>manuelsibaja@gmail.com</Email>
+        <Password>789456</Password>
+        <Orders>
+            <Order>0</Order>
+        </Orders>
     </Chef>
 </Chefs>

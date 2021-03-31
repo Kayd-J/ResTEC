@@ -2,15 +2,14 @@ package com.example.app
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.app.databinding.ActivityMainBinding
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.administrar_carrito.*
+import com.example.app.services.DataService
+import com.example.app.services.ServiceBuilder
 import kotlinx.android.synthetic.main.opciones_menu.*
+import retrofit2.Call
+import retrofit2.Callback
 
 
 class Cartilla: AppCompatActivity() {
@@ -27,13 +26,15 @@ class Cartilla: AppCompatActivity() {
         como función asociar aquellos platillos que vienen del Restful Api para poder mostar solo los que
         el Administrador este habilitando en dicho momento
          * **/
-        val platillo: ArrayList<Platillos> = arrayListOf(
-                Platillos("Desayuno", "1","gallo pinto, huevo, pan y natillas", "https://pbs.twimg.com/media/De9ux_AUYAABwHL.jpg", 500,100) ,
-                Platillos("Cena", "2","SUSHI", "https://i.pinimg.com/originals/02/03/cc/0203cc0123d33a772361dc4c8797f269.jpg",600,200),
-                Platillos("Almuerzo", "3","pescado frito", "https://goodbread.co/images/breakfast1.jpg",1500,300),
-                Platillos("Típico", "4","casado con fresco natural", "https://media.cntraveler.com/photos/5f5fad3f7557491753644e3b/3:2/w_4050,h_2700,c_limit/50States50Cuisines-2020-AmberDay-Lede%20Option.jpg",800,400),
-                Platillos("", "","ACEPTAR", "http://iconbug.com/data/9e/320/f091bc243f41dce0e3eaa3d6848234c6.png",0,500)
+        val platillo: ArrayList<Platillo> = arrayListOf(
+                Platillo("Desayuno", "1","gallo pinto, huevo, pan y natillas", "https://pbs.twimg.com/media/De9ux_AUYAABwHL.jpg", 500,100) ,
+                Platillo("Cena", "2","SUSHI", "https://i.pinimg.com/originals/02/03/cc/0203cc0123d33a772361dc4c8797f269.jpg",600,200),
+                Platillo("Almuerzo", "3","pescado frito", "https://goodbread.co/images/breakfast1.jpg",1500,300),
+                Platillo("Típico", "4","casado con fresco natural", "https://media.cntraveler.com/photos/5f5fad3f7557491753644e3b/3:2/w_4050,h_2700,c_limit/50States50Cuisines-2020-AmberDay-Lede%20Option.jpg",800,400),
+                Platillo("", "","ACEPTAR", "http://iconbug.com/data/9e/320/f091bc243f41dce0e3eaa3d6848234c6.png",0,500)
         )
+
+
 
         val total_menu = platillo.size
 

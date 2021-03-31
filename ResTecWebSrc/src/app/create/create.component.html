@@ -1,0 +1,24 @@
+<h4>Crear Plato</h4>
+<form>
+  <div class="form-row align-items-center">
+    <div class="col-auto">
+      <label class="sr-only" for="DishPrice">Nombre del plato</label>
+      <input type="text" class="form-control mb-2" placeholder="Pinto, Chiverre, Ensalada Verde, etc..." #inputName>
+    </div>
+    <div class="col-auto">
+      <label class="sr-only" for="DishPrice">Descripcion</label>
+      <input type="text" class="form-control mb-2" placeholder="ensalada de tomate, lechuga, limon y sal..." #inputDescripcion>
+    </div>
+    <div class="col-auto">
+      <label class="sr-only" for="DishPrice">Precio</label>
+      <input type="text" class="form-control mb-2" placeholder="0" #inputPrecio>
+    </div>
+    <div class="col-auto">
+      <label class="sr-only" for="DishPrice">Ingredientes</label>
+      <input type="text" class="form-control mb-2" placeholder="0" #inputIngredientes>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-2" (click)="this.addDish(inputName.value, inputDescripcion.value, inputPrecio.value, ['arroz', 'frijoles'])">Crear</button>
+    </div>
+  </div>
+</form>

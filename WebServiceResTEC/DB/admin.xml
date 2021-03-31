@@ -1,4 +1,4 @@
-<Administrador>
-    <Correo>user@user.com</Correo>
-    <Contrasenia>admin123</Contrasenia>
-</Administrador>
+﻿<Admin>
+  <Email>user@user.com</Email>
+  <Password>admin123</Password>
+</Admin>
