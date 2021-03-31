@@ -12,19 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Funciones_Pantallas.MainActivity"
             android:label="RESTEC"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".Registrarse" />
-        <activity android:name=".AdministrarCarrito" />
-        <activity android:name=".GenerarPedido" />
-        <activity android:name=".Visualizar" />
-        <activity android:name=".Cartilla" />
-        <activity android:name=".Feedback" />
+        <activity android:name=".Funciones_Pantallas.Registrarse" />
+        <activity android:name=".Funciones_Pantallas.AdministrarCarrito" />
+        <activity android:name=".Funciones_Pantallas.GenerarPedido" />
+        <activity android:name=".Funciones_Pantallas.Visualizar" />
+        <activity android:name=".Funciones_Pantallas.Cartilla" />
+        <activity android:name=".Funciones_Pantallas.Feedback" />
 
-        <activity android:name=".Inicio"
+        <activity android:name=".Funciones_Pantallas.Inicio"
             android:theme="@style/AppTheme.NoActionBar">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
