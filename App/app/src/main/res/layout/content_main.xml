@@ -10,7 +10,7 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:id="@+id/lblrestec1"
+        android:id="@+id/lblrestec5"
         android:layout_width="191dp"
         android:layout_height="77dp"
         android:background="#efb758"

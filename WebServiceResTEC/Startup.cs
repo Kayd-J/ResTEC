@@ -34,8 +34,13 @@ namespace WebServiceResTEC
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebServiceResTEC", Version = "v1" });
             });
+<<<<<<< Updated upstream
             services.AddControllers().AddNewtonsoftJson(s => {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+=======
+            services.AddControllers().AddJsonOptions(s => {
+                s.JsonSerializerOptions.PropertyNamingPolicy = null;
+>>>>>>> Stashed changes
             });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

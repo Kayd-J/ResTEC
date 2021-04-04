@@ -57,7 +57,6 @@ class Registrarse: AppCompatActivity() {
             //Y la información de registro no se enviará
             this.finish()
         }
-
     }
 
     /**

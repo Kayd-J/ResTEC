@@ -56,7 +56,6 @@ class GenerarPedido: AppCompatActivity() {
             val intent = Intent(this, Visualizar::class.java)
             intent.putExtra("preparacion", tiempo)
             startActivity(intent)
-            //startActivity(Intent(this, Visualizar::class.java))
         }
     }
 }
