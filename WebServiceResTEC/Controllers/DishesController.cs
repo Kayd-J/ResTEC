@@ -83,11 +83,7 @@ namespace WebServiceResTEC.Controllers
             }
 
             var dishToPatch = _mapper.Map<DishDto>(dishFromRepo);
-<<<<<<< Updated upstream
-            patchDoc.ApplyTo(dishToPatch, ModelState);
-=======
             patchDoc.ApplyTo(dishToPatch);
->>>>>>> Stashed changes
             
             if(!TryValidateModel(dishToPatch))
             {

@@ -82,11 +82,7 @@ namespace WebServiceResTEC.Controllers
             }
 
             var menuToPatch = _mapper.Map<MenuDto>(menuFromRepo);
-<<<<<<< Updated upstream
-            patchDoc.ApplyTo(menuToPatch, ModelState);
-=======
             patchDoc.ApplyTo(menuToPatch);
->>>>>>> Stashed changes
             
             if(!TryValidateModel(menuToPatch))
             {

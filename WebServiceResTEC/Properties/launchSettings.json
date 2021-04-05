@@ -34,7 +34,7 @@
     "IIS": {
       "commandName": "IIS",
       "launchBrowser": true,
-      "launchUrl": "api/dishes"
+      "launchUrl": "swagger"
     }
   }
 }
