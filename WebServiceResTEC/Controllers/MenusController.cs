@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.JsonPatch;
 namespace WebServiceResTEC.Controllers
 {
 
+    //This is an API Controller for the Menu entity type. This Controller allows GETs, PUT, POST, PATCH and DELETE requests.
     [Route("api/[controller]")]
     [ApiController]
     public class MenusController : ControllerBase
@@ -23,6 +24,7 @@ namespace WebServiceResTEC.Controllers
         }
 
         //GET api/menus
+        //This request returns a list of Menu entities in a JSON format representing the menus database.
         [HttpGet(Name="GetMenus")]
         public ActionResult <IEnumerable<MenuDto>> GetMenus()
         {
@@ -31,6 +33,8 @@ namespace WebServiceResTEC.Controllers
         }
 
         //GET api/menus/{id}
+        //This request returns a single Menu entity in a JSON format. This entity has the same id as the
+        //received in the request header.
         [HttpGet("{id}", Name = "GetMenuById")]
         public ActionResult <MenuDto> GetMenuById(int id)
         {
@@ -42,6 +46,8 @@ namespace WebServiceResTEC.Controllers
         }
 
         //POST api/admin
+        //This request receives a JSON representing a new Menu Entity. This JSON is mapped to a Menu Data Model 
+        //and then added to the database.
         [HttpPost]
         public ActionResult <MenuDto> CreateMenu(MenuDto menuDto)
         {
@@ -55,6 +61,8 @@ namespace WebServiceResTEC.Controllers
         }
 
         //PUT api/menus/{id}
+        //This request receives a JSON representing Menu Entity to be updated. This JSON is mapped to a Menu Data Model 
+        //and with the id received in the header of the request, the matching entity will be replaced with the new info.
         [HttpPut("{id}")]
         public ActionResult UpdateMenu(int id, MenuDto menuDto)
         {
@@ -72,6 +80,8 @@ namespace WebServiceResTEC.Controllers
         }
 
         //PATCH api/menus/{id}
+        //This requests is to update a Menu Entity with the matching id, but only when partial
+        //info of the entity needs to be updated.
         [HttpPatch("{id}")]
         public ActionResult PartialMenuUpdate(int id, JsonPatchDocument<MenuDto> patchDoc)
         {
@@ -97,6 +107,7 @@ namespace WebServiceResTEC.Controllers
         }
 
         //DELETE api/menus/{id}
+        //This request deletes the Menu entity with the id received in the request header.
         [HttpDelete("{id}")]
         public ActionResult DeleteMenu(int id)
         {

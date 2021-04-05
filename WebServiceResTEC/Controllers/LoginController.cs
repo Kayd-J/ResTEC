@@ -7,6 +7,7 @@ using WebServiceResTEC.Models;
 namespace WebServiceResTEC.Controllers
 {
 
+    //This is an API Controller for validation of the Login credentials. This Controller allows a POST request.
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
@@ -21,8 +22,10 @@ namespace WebServiceResTEC.Controllers
         }        
 
         //POST api/login
+        //This POST request receives a JSON representing the LoginProfile Data Model. It will return the type of user
+        //by checking the username and password in the JSON.
         [HttpPost]
-        public ActionResult <LoginDto> CreateDish(LoginDto loginDto)
+        public ActionResult <LoginDto> CheckCredentials(LoginDto loginDto)
         {
             var loginProfile = _mapper.Map<LoginProfile>(loginDto);
             LoginProfile user = _repository.CheckCredentials(loginProfile);
