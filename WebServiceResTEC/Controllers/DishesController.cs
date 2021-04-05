@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.JsonPatch;
 
 namespace WebServiceResTEC.Controllers
 {
-
+    //This is an API Controller for the Dish entity type. This Controller allows GETs, PUT, POST, PATCH and DELETE requests.
     [Route("api/[controller]")]
     [ApiController]
     public class DishesController : ControllerBase
@@ -24,6 +24,7 @@ namespace WebServiceResTEC.Controllers
         }     
 
         //GET api/dishes
+        //This request returns a list of Dish entities in a JSON format representing the Dishes database.
         [HttpGet(Name="GetDishes")]
         public ActionResult <IEnumerable<DishDto>> GetDishes()
         {
@@ -32,6 +33,8 @@ namespace WebServiceResTEC.Controllers
         }
 
         //GET api/dishes/{id}
+        //This request returns a single Client entity in a JSON format. This entity has the same id as the
+        //received in the request header.
         [HttpGet("{id}", Name = "GetDishById")]
         public ActionResult <DishDto> GetDishById(int id)
         {
@@ -43,6 +46,8 @@ namespace WebServiceResTEC.Controllers
         }
 
         //POST api/dishes
+        //This request receives a JSON representing a new Dish Entity. This JSON is mapped to a Dish Data Model 
+        //and the added to the database.
         [HttpPost]
         public ActionResult <DishDto> CreateDish(DishDto dishDto)
         {
@@ -56,6 +61,8 @@ namespace WebServiceResTEC.Controllers
         }
 
         //PUT api/dishes/{id}
+        //This request receives a JSON representing Dish Entity to be updated. This JSON is mapped to a Dish Data Model 
+        //and with the id received in the header of the request, the matching entity will be replaced with the new info.
         [HttpPut("{id}")]
         public ActionResult UpdateDish(int id, DishDto dishDto)
         {
@@ -73,6 +80,8 @@ namespace WebServiceResTEC.Controllers
         }
 
         //PATCH api/dishes/{id}
+        //This requests is to update a Dish Entity with the matching id, but only when partial
+        //info of the entity needs to be updated.
         [HttpPatch("{id}")]
         public ActionResult PartialDishUpdate(int id, JsonPatchDocument<DishDto> patchDoc)
         {
@@ -83,7 +92,7 @@ namespace WebServiceResTEC.Controllers
             }
 
             var dishToPatch = _mapper.Map<DishDto>(dishFromRepo);
-            patchDoc.ApplyTo(dishToPatch, ModelState);
+            patchDoc.ApplyTo(dishToPatch);
             
             if(!TryValidateModel(dishToPatch))
             {
@@ -98,6 +107,7 @@ namespace WebServiceResTEC.Controllers
         }
 
         //DELETE api/dishes/{id}
+        //This request deletes the Dish entity with the id received in the request header.
         [HttpDelete("{id}")]
         public ActionResult DeleteDish(int id)
         {

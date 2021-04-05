@@ -7,9 +7,16 @@ namespace WebServiceResTEC.Data
     
     public interface IRepo
     {
+        //Reads the Admin database and returns an Admin Data Model with the obtained info.
         Admin GetAdmin();
+    
+        //Reads the Admin, Clients and Chefs database to check credentials for the received loginProfile.
         LoginProfile CheckCredentials(LoginProfile loginProfile);
+
+        //Reads the Chefs database, obtains all chefs and returns a list of Chef Data Models.
         IEnumerable<Chef> GetAllChefs();
+        
+        //Reads the Dishes database, obtains all dishes and returns a list of Dish Data Models.
         IEnumerable<Dish> GetAllDishes();
         Dish GetDishById(int id);
         void UpdateDish(Dish dish);

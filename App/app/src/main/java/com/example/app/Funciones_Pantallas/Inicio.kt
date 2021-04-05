@@ -1,9 +1,10 @@
-package com.example.app
+package com.example.app.Funciones_Pantallas
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.example.app.R
 
 class Inicio: AppCompatActivity() {
 

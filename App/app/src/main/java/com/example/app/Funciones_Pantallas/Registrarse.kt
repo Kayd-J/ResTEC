@@ -1,12 +1,11 @@
-package com.example.app
+package com.example.app.Funciones_Pantallas
 
 import android.content.Intent
-import android.content.Context
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.content_main.*
+import com.example.app.R
+import com.example.app.Especiales.SeleccionFecha
 import kotlinx.android.synthetic.main.registrarse.*
 
 class Registrarse: AppCompatActivity() {
@@ -58,7 +57,6 @@ class Registrarse: AppCompatActivity() {
             //Y la información de registro no se enviará
             this.finish()
         }
-
     }
 
     /**

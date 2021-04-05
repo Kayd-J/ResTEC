@@ -84,8 +84,8 @@
 
     <TextView
         android:id="@+id/lblitem"
-        android:layout_width="159dp"
-        android:layout_height="63dp"
+        android:layout_width="385dp"
+        android:layout_height="116dp"
         android:textColor="#c34129"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
