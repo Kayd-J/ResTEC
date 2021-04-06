@@ -37,6 +37,9 @@ namespace WebServiceResTEC
             services.AddControllers().AddJsonOptions(s => {
                 s.JsonSerializerOptions.PropertyNamingPolicy = null;
             });
+            services.AddControllers().AddNewtonsoftJson(s => {
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
