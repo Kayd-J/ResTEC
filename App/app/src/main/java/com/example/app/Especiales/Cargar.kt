@@ -1,7 +1,8 @@
-package com.example.app
+package com.example.app.Especiales
 
 import android.app.Activity
 import android.app.AlertDialog
+import com.example.app.R
 
 class Cargar (val visualizar: Activity) {
 

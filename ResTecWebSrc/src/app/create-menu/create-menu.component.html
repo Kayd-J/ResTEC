@@ -1,14 +1,9 @@
 <h4>Crear Menu</h4>
 <form>
   <div class="form-row align-items-center">
-    <div class="col-auto">
-      <label class="sr-only" for="inlineFormInput">Nombre del Plato</label>
-      <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Pinto, Chiverre, Ensalada Verde, etc...">
-    </div>
-
     <div>
-      <label class="sr-only" for="tipoDePlatot">Tipo de plato</label>
-      <select class="form-control form-control-sm" id="tipoDePlato">
+      <label class="sr-only" for="inlineFormInput">Tipo de plato</label>
+      <select class="form-control form-control-sm" #inputTipoDePlato>
         <option>Desayuno</option>
         <option>Almuerzo</option>
         <option>Cafe</option>
@@ -17,15 +12,16 @@
       </select>
     </div>
     <div class="col-auto">
-      <label class="sr-only" for="inlineFormInput">Precio</label>
-      <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Colones">
-    </div>
-    <div class="col-auto">
       <label class="sr-only" for="inlineFormInput">Calorias</label>
-      <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Kcal">
+      <input type="text" class="form-control mb-2" placeholder="Kcal" #inputCalorias>
     </div>
     <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-2" (click)="addMenu('Cafecito', 400)">Crear</button>
+      <label class="sr-only" for="inlineFormInput">Platos</label>
+      <input type="text" class="form-control mb-2" placeholder="0, 1, ..." #inputPlatos>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-2" (click)="addMenu(inputTipoDePlato.value, inputCalorias.value, [0, 1])">Crear</button>
     </div>
   </div>
 </form>
+

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 namespace WebServiceResTEC.Controllers
 {
 
+    //This is an API Controller for the Order entity type. This Controller allows GETs, PUT and POST requests.
     [Route("api/[controller]")]
     [ApiController]
     public class OrdersController : ControllerBase
@@ -21,7 +22,8 @@ namespace WebServiceResTEC.Controllers
             _mapper = mapper;
         }        
 
-        //GET api/admin
+        //GET api/order
+        //This request returns a list of Order entities in a JSON format representing the orders database.
         [HttpGet(Name="GetOrders")]
         public ActionResult <OrderDto> GetOrders()
         {
@@ -29,7 +31,9 @@ namespace WebServiceResTEC.Controllers
             return Ok(_mapper.Map<IEnumerable<OrderDto>>(orderItem));
         }
 
-        //GET api/admin
+        //GET api/order/{email}
+        //This request returns a single Order entity in a JSON format. This entity has the same chef email as the
+        //received in the request header.
         [HttpGet("{email}")]
         public ActionResult <OrderDto> GetOrdersByChef(string email)
         {
@@ -37,7 +41,9 @@ namespace WebServiceResTEC.Controllers
             return Ok(_mapper.Map<IEnumerable<OrderDto>>(orderItem));
         }
 
-        //POST api/clients
+        //POST api/orders
+        //This request receives a JSON representing a new Order Entity. This JSON is mapped to a Order Data Model 
+        //and then added to the database.
         [HttpPost]
         public ActionResult <OrderDto> CreateOrder(OrderDto orderDto)
         {
@@ -49,5 +55,38 @@ namespace WebServiceResTEC.Controllers
             return CreatedAtRoute(nameof(GetOrders), new {Id = newOrderDto.Id}, newOrderDto);
 
         }
+
+
+        //PUT api/orders/{id}
+        //This request receives a JSON representing Order Entity to be updated. This JSON is mapped to a Order Data Model 
+        //and with the id received in the header of the request, the matching entity will be replaced with the new info.
+        [HttpPut("{id}")]
+        public ActionResult UpdateOrder(int id, OrderDto orderDto)
+        {
+            var orderFromRepo = _repository.GetOrderById(id);
+            orderDto.Id = orderFromRepo.Id;
+            if(orderFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(orderDto, orderFromRepo);
+            _repository.UpdateOrderState(orderFromRepo);
+
+            return NoContent();
+        }
+
+        // //DELETE api/dishes/{id}
+        // [HttpDelete("{id}")]
+        // public ActionResult DeleteOrder(int id)
+        // {
+        //     var orderFromRepo = _repository.GetOrderById(id);
+        //     if(orderFromRepo == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     _repository.DeleteOrder(orderFromRepo);
+        //     return NoContent();
+        // }
     }
 }

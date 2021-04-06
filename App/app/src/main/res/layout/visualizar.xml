@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="	#efb758">
 
     <TextView
         android:id="@+id/lblrestec2"
-        android:layout_width="191dp"
-        android:layout_height="77dp"
-        android:background="#009688"
+        android:layout_width="201dp"
+        android:layout_height="80dp"
+        android:background="	#efb758"
         android:gravity="center|center_horizontal"
         android:text="RESTEC"
+        android:textColor="	#c34129"
         android:textSize="36sp"
+        android:textStyle="bold"
         app:fontFamily="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.531"
@@ -28,6 +30,7 @@
         android:layout_height="92dp"
         android:gravity="center"
         android:text="Orden lista"
+        android:textColor="	#c34129"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +43,9 @@
         android:id="@+id/btnconcretar"
         android:layout_width="205dp"
         android:layout_height="78dp"
+        android:background="#bdbda3"
         android:text="Concretar"
+        android:textColor="#c34129"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

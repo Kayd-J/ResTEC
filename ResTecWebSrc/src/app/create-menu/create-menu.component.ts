@@ -14,9 +14,9 @@ export class CreateMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addMenu(type: string, calories: number): void {
-    const dishes: Array<number> = [];
+  addMenu(type: string, caloriesStr: string, dishes: number[]): void {
     const price = 0;
+    const calories = Number(caloriesStr);
     this.dataService.addMenu({type, calories, dishes, price} as MenuInterface).subscribe();
   }
 

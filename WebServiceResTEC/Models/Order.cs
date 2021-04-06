@@ -19,6 +19,14 @@ namespace WebServiceResTEC.Models{
         public IEnumerable<int> Dishes { get; set;}
         [Required]
         public string Chef { get; set;}
+
+        [Required]
+        public int Client { get; set;}
+
+        public string FeedbackTime { get; set;}
+
+        public string FeedbackScore { get; set;}
+
     }
 
 }

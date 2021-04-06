@@ -6,6 +6,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MessageService} from './message.service';
 import {MenuInterface} from './models/menu.interface';
 import {OrderInterface} from './models/order.interface';
+import {LoginInterface} from './models/login.interface';
+import {ClientInterface} from './models/client.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,7 @@ export class DataService {
   private menusUrl = '/api/menus/';
   private ordersUrl = '/api/orders/';
   private reportsUrl = '/api/reports/';
+  private loginUrl = '/api/login/';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -36,6 +39,20 @@ export class DataService {
     );
   }
 
+  updateDish(dish: DishInterface): Observable<DishInterface> {
+    return this.http.put<DishInterface>(this.dishesUrl + dish.id, dish, this.httpOptions).pipe(
+      tap((newDish: DishInterface) => this.log(`updated dish w/ id=${newDish.id}`)),
+      catchError(this.handleError<DishInterface>('updateDish'))
+    );
+  }
+
+  deleteDish(dishId: number): Observable<{}> {
+    // @ts-ignore
+    return this.http.delete(this.dishesUrl + dishId, this.httpOptions).pipe(
+      catchError(this.handleError('deleteDish'))
+    );
+  }
+
   getAllMenus(): Observable<MenuInterface[]> {
     this.messageService.add('DataService: fetched menus');
     return this.http.get<MenuInterface[]>(this.menusUrl)
@@ -51,6 +68,20 @@ export class DataService {
     );
   }
 
+  updateMenu(menu: MenuInterface): Observable<MenuInterface> {
+    return this.http.put<MenuInterface>(this.menusUrl + menu.id, menu, this.httpOptions).pipe(
+      tap((newMenu: MenuInterface) => this.log(`updated menu w/ id=${newMenu.id}`)),
+      catchError(this.handleError<MenuInterface>('updateMenu'))
+    );
+  }
+
+  deleteMenu(menuId: number): Observable<{}> {
+    // @ts-ignore
+    return this.http.delete(this.menusUrl + menuId, this.httpOptions).pipe(
+      catchError(this.handleError('deleteMenu'))
+    );
+  }
+
   getAllOrders(): Observable<OrderInterface[]> {
     this.messageService.add('DataService: fetched orders');
     return this.http.get<OrderInterface[]>(this.ordersUrl)
@@ -63,8 +94,22 @@ export class DataService {
     this.messageService.add('DataService: fetched orders');
     return this.http.get<OrderInterface[]>(this.ordersUrl + email)
       .pipe(
-        catchError(this.handleError<OrderInterface[]>('getAllOrders', []))
+        catchError(this.handleError<OrderInterface[]>('getOrdersByChef', []))
       );
+  }
+
+  updateOrder(order: OrderInterface): Observable<OrderInterface> {
+    return this.http.put<OrderInterface>(this.ordersUrl + order.id, order, this.httpOptions).pipe(
+      tap((newOrder: OrderInterface) => this.log(`updated order w/ id=${newOrder.id}`)),
+      catchError(this.handleError<OrderInterface>('updateOrder'))
+    );
+  }
+
+  deleteOrder(orderId: number): Observable<{}> {
+    // @ts-ignore
+    return this.http.delete(this.ordersUrl + orderId, this.httpOptions).pipe(
+      catchError(this.handleError('deleteOrder'))
+    );
   }
 
   // tslint:disable-next-line:typedef
@@ -88,6 +133,38 @@ export class DataService {
       .pipe(
         catchError(this.handleError<DishInterface[]>('getAllDishes', []))
       );
+  }
+
+  getBestProfitDishes(): Observable<DishInterface[]> {
+    this.messageService.add('DataService: fetched best profit dishes');
+    return this.http.get<DishInterface[]>(this.reportsUrl + 'topprofit')
+      .pipe(
+        catchError(this.handleError<DishInterface[]>('getBestProfitDishes', []))
+      );
+  }
+
+  getBestClientsByOrders(): Observable<ClientInterface[]> {
+    this.messageService.add('DataService: fetched top clients by amount of orders');
+    return this.http.get<ClientInterface[]>(this.reportsUrl + 'topclients')
+      .pipe(
+        catchError(this.handleError<ClientInterface[]>('getBestClientsByOrders', []))
+      );
+  }
+
+  getOrdersByFeedback(): Observable<OrderInterface[]> {
+    this.messageService.add('DataService: fetched top orders by feedback score');
+    return this.http.get<OrderInterface[]>(this.reportsUrl + 'toporders')
+      .pipe(
+        catchError(this.handleError<OrderInterface[]>('getOrdersByFeedback', []))
+      );
+  }
+
+  getLoginCredentials(loginCred: LoginInterface): Observable<LoginInterface>
+  {
+    return this.http.post<LoginInterface>(this.loginUrl, loginCred, this.httpOptions).pipe(
+      tap((logCredentials: LoginInterface) => this.log(`usertype logged: ${logCredentials.userType}`)),
+      catchError(this.handleError<LoginInterface>('getLoginCredentials'))
+    );
   }
 
   // tslint:disable-next-line:typedef

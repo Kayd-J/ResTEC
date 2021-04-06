@@ -1,14 +1,13 @@
-package com.example.app
+package com.example.app.Funciones_Pantallas
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.EditText
-import android.widget.ImageView
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.administrar_carrito.*
+import com.example.app.Especiales.Platillo
+import com.example.app.R
 import kotlinx.android.synthetic.main.opciones_menu.*
 
 
@@ -18,19 +17,12 @@ class Cartilla: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.opciones_menu)
 
-        /**
-        Aquí se crea un pequeño arraylist, de todos los platillos que la aplicación administrará para poner
-        a disposición del cliente, estos contienen el nombre, la descripción  y un código, este último tiene
-        como función asociar aquellos platillos que vienen del Restful Api para poder mostar solo los que
-        el Administrador este habilitando en dicho momento
-         * **/
-        val platillo: ArrayList<Platillos> = arrayListOf(
-                Platillos("Desayuno", "1","gallo pinto, huevo, pan y natillas", "https://pbs.twimg.com/media/De9ux_AUYAABwHL.jpg", 500,100) ,
-                Platillos("Cena", "2","SUSHI", "https://i.pinimg.com/originals/02/03/cc/0203cc0123d33a772361dc4c8797f269.jpg",600,200),
-                Platillos("Almuerzo", "3","pescado frito", "https://goodbread.co/images/breakfast1.jpg",1500,300),
-                Platillos("Típico", "4","casado con fresco natural", "https://media.cntraveler.com/photos/5f5fad3f7557491753644e3b/3:2/w_4050,h_2700,c_limit/50States50Cuisines-2020-AmberDay-Lede%20Option.jpg",800,400),
-                Platillos("", "","ACEPTAR", "http://iconbug.com/data/9e/320/f091bc243f41dce0e3eaa3d6848234c6.png",0,500)
-        )
+        val intent = getIntent()
+        val informacion = intent.getStringExtra("informacion")
+
+        val platillo = Convertir(informacion)
+
+        Log.i("DISPONIBLES", platillo.get(0).descripcion_platillo)
 
         val total_menu = platillo.size
 
@@ -38,21 +30,23 @@ class Cartilla: AppCompatActivity() {
 
         //Se crea el array para almacenar los menus seleccionados
         val platillos_seleccionados = ArrayList<String>()
+        val descripcion_selccionados = ArrayList<String>()
         val precio_seleccionados = ArrayList<String>()
-        val codigo_seleccionados = ArrayList<String>()
+        val ingredientes_seleccionados = ArrayList<String>()
         val tiempo_seleccionados = ArrayList<String>()
 
         //Etiquetas de informacion
         val fondo = findViewById<TextView>(R.id.lblfondo) as TextView
         val nombre_menu = findViewById<TextView>(R.id.lblmenu) as TextView
-        val descripcion_menu = findViewById<TextView>(R.id.lbldes) as TextView
+        val descripcion_menu = findViewById<TextView>(R.id.lbldescripcion) as TextView
+        val ingredientes_menu = findViewById<TextView>(R.id.lblingredientes) as TextView
         val precio_menu = findViewById<TextView>(R.id.lblprecio) as TextView
 
         //Se muestra información del primer menu disponible en la aplicación
         nombre_menu.setText(platillo.get(numero_platillo).nombre_platillo)
         descripcion_menu.setText(platillo.get(numero_platillo).descripcion_platillo)
-        precio_menu.setText(platillo.get(numero_platillo).precio_platillo.toString())
-
+        ingredientes_menu.setText(platillo.get(numero_platillo).ingredientes_platillo)
+        precio_menu.setText(platillo.get(numero_platillo).precio_platillo)
 
         //Botón para avanzar a lo largo de los menus disponibles
         btnatras.setOnClickListener {
@@ -83,10 +77,10 @@ class Cartilla: AppCompatActivity() {
         //Boton para agregar al carrito
         btnagregar.setOnClickListener {
                 platillos_seleccionados.add(platillo.get(numero_platillo).nombre_platillo)
-                precio_seleccionados.add(platillo.get(numero_platillo).precio_platillo.toString())
-                codigo_seleccionados.add(platillo.get(numero_platillo).codigo_platillo)
-                tiempo_seleccionados.add(platillo.get(numero_platillo).tiempo.toString())
-                Toast.makeText(this, platillos_seleccionados.toString(), Toast.LENGTH_LONG).show()
+                precio_seleccionados.add(platillo.get(numero_platillo).precio_platillo)
+                //codigo_seleccionados.add(platillo.get(numero_platillo).codigo_platillo)
+                tiempo_seleccionados.add(platillo.get(numero_platillo).tiempo_platillo)
+                Toast.makeText(this, "Item agregado", Toast.LENGTH_LONG).show()
         }
 
         //Boton para comprar y avanzar a la ventana de Administrar Carrito
@@ -99,10 +93,45 @@ class Cartilla: AppCompatActivity() {
                 val intent = Intent(this, AdministrarCarrito::class.java)
                 intent.putExtra("platillos", platillos_seleccionados)
                 intent.putExtra("precios", precio_seleccionados)
-                intent.putExtra("codigos", codigo_seleccionados)
                 intent.putExtra("tiempos", tiempo_seleccionados)
                 startActivity(intent)
             }
         }
+    }
+
+    private fun Convertir(entrada: String): ArrayList<Platillo>{
+        var menus : List<String>
+        var menus_disponibles = ArrayList<Platillo>()
+
+        menus = entrada.split("}")
+
+        for (i in 0 until (menus.size-1)) {
+            //Aquí obtenego los diferentes elementos en forma de array
+            //El último no interesa
+            menus_disponibles.add(Platillo(TomarElemento(menus[i]).get(0), TomarElemento(menus[i]).get(1), TomarElemento(menus[i]).get(2),
+                    TomarElemento(menus[i]).get(3),TomarElemento(menus[i]).get(4)))
+        }
+        return menus_disponibles
+    }
+
+    private fun TomarElemento(hilera: String) : ArrayList<String>{
+
+        val item : List<String>
+        var menu_display = ArrayList<String>()
+        item =  hilera.split(":")
+
+        val nombre = item[2].split(",").get(0) //Nombre del platillo
+        val descripcion = item[3].substring(1, item[3].length-9) //Descripcion del platillo
+        val precio = item[4].split(",").get(0) //Precio de preparación
+        val ingredientes = item[6].substring(1, item[6].length-12) //Ingredientes del platillo
+        val tiempo_prep = item[7].split(",").get(0) //Tiempo de preparación
+
+        menu_display.add(nombre)
+        menu_display.add(descripcion)
+        menu_display.add(precio)
+        menu_display.add(ingredientes)
+        menu_display.add(tiempo_prep)
+
+        return menu_display
     }
 }

@@ -27,4 +27,30 @@ export class UpdateTableComponent implements OnInit {
     this.dataService.getAllMenus().subscribe( data => this.menus = data);
   }
 
+  updateMenu(idStr: string, type: string, caloriesStr: string, dishes: number[]): void {
+    const price = 0;
+    const id = Number(idStr);
+    const calories = Number(caloriesStr);
+    this.dataService.updateMenu({id, type, calories, dishes, price} as MenuInterface).subscribe();
+  }
+
+  updateDish(idStr: string, name: string, description: string, priceStr: string,
+             ingredients: string[], amountSalesStr: string, prepTimeStr: string ): void {
+    const id = Number(idStr);
+    const price = Number(priceStr);
+    const amountSales = Number(amountSalesStr);
+    const prepTime = Number(prepTimeStr);
+    this.dataService.updateDish({id, name, description, price, amountSales, ingredients, prepTime} as DishInterface).subscribe();
+  }
+
+  deleteDish(idStr: string): void{
+    const id = Number(idStr);
+    this.dataService.deleteDish(id).subscribe();
+  }
+
+  deleteMenu(idStr: string): void{
+    const id = Number(idStr);
+    this.dataService.deleteMenu(id).subscribe();
+  }
+
 }

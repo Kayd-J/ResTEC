@@ -1,15 +1,18 @@
-package com.example.app
+package com.example.app.Funciones_Pantallas
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.app.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,26 +32,14 @@ class MainActivity : AppCompatActivity() {
         val usuario_input = findViewById<EditText>(R.id.inputusuario) as EditText
         val contrasena_inpurt = findViewById<EditText>(R.id.inputcontrasena) as EditText
 
-        val label = findViewById<TextView>(R.id.lblnombreu) as TextView
-
         //Se almacenan dos valores iniciales para las pruebas primarias
         // Usuario: estudiantea@estudiantes.ac.cr
         // Contraseñas_ 123456
         usuarios_registrados.add("estudiantea@estudiantes.ac.cr")
         contrsenas_registradas.add("123456")
 
-
         //Botón de acceso a la ventana de Administrar Carrito
         btnentrar.setOnClickListener {
-
-            val intent = getIntent()
-            val usariorecibido = intent.getStringArrayListExtra("usuario")
-            val cantrasenarecibo = intent.getStringExtra("contrasena")
-
-            val usuario = usuario_input.text.toString()
-            val contrasena = contrasena_inpurt.text.toString()
-
-            //Toast.makeText(this, usariorecibido[0] + " 4", Toast.LENGTH_LONG).show()
 
             //Validaciones para continuar en la aplicación
 
@@ -58,11 +49,19 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Favor ingresar datos válidos", Toast.LENGTH_LONG).show()
             }
             else{
-                startActivity(Intent(this, Cartilla::class.java))
+                val url = "http://192.168.1.3/WebServiceResTEC/api/dishes/"
+                val queue = Volley.newRequestQueue(this)
+                val stringRequest = StringRequest(Request.Method.GET, url, {
+                    response ->
+                    val intent = Intent(this, Cartilla::class.java)
+                    intent.putExtra("informacion", response.toString())
+                    startActivity(intent)
+                    this.finish()
+                }, {
+                    Log.i("log", "Error")
+                })
+                queue.add(stringRequest)
             }
-
-            //Se realiza una comprobación para corroboar el usuario y la contraseña
-            //verificar(usuario, contrasena)
         }
 
         //Botón de acceso a la ventana de Registro

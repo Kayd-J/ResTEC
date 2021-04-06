@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using WebServiceResTEC.Models;
+using System.Globalization;
 
 namespace WebServiceResTEC.Data
 {
@@ -48,8 +49,8 @@ namespace WebServiceResTEC.Data
                     return loginProfile;
                 }
             }
-
-            return null;
+            loginProfile.UserType = "Invalid";
+            return loginProfile;
         }
         public IEnumerable<Chef> GetAllChefs()
         {
@@ -233,14 +234,14 @@ namespace WebServiceResTEC.Data
                 XElement parent = element.Parent;  
                 menu.Id = Int32.Parse(parent.Element("Id").Value);  
                 menu.Type = parent.Element("Type").Value;  
-                menu.Calories  = Int32.Parse(parent.Element ("Calories").Value);
+                menu.Calories = Int32.Parse(parent.Element("Calories").Value);
                 List<int> dishes = new List<int>();
-                foreach (XElement dish in parent.Descendants("Dish"))
+                foreach (XElement dish in element.Descendants("Dish"))
                 {
                     dishes.Add(Int32.Parse(dish.Value));
                 }
                 menu.Dishes = dishes;
-                menu.Price = Int32.Parse(element.Element ("Price").Value);
+                menu.Price  = Int32.Parse(parent.Element ("Price").Value);
                 return menu;
             }  
             return null;
@@ -303,7 +304,6 @@ namespace WebServiceResTEC.Data
             }
 
             menu.Price = price;
-            Console.WriteLine(menu.Price);
 
             xmlDoc.Element("Menus").Add(
                 new XElement("Menu",
@@ -413,7 +413,10 @@ namespace WebServiceResTEC.Data
                     new XElement("PrepTime", order.PrepTime),
                     new XElement("State", order.State),
                     new XElement(dishes),
-                    new XElement("Chef", order.Chef)
+                    new XElement("Chef", order.Chef),
+                    new XElement("Client", order.Client),
+                    new XElement("FeedbackTime", ""),
+                    new XElement("FeedbackScore", "")
                 )
             );
             
@@ -442,10 +445,44 @@ namespace WebServiceResTEC.Data
                 }
                 order.Dishes = dishes;
                 order.Chef = element.Element ("Chef").Value;
+                order.Client = Int32.Parse(element.Element ("Client").Value);
+                order.FeedbackTime = element.Element ("FeedbackTime").Value;
+                order.FeedbackScore = element.Element ("FeedbackScore").Value;
                 
                 orders.Add(order);     
             } 
             return orders;
+        }
+
+         public Order GetOrderById(int id)
+        {
+            Order order = new Order();  
+            XDocument doc = XDocument.Load("DB\\orders.xml");  
+            XElement element = doc.Element("Orders")  
+                                .Elements("Order").Elements("Id").  
+                                SingleOrDefault(x => x.Value == id.ToString());
+            if(element != null) {  
+                XElement parent = element.Parent;  
+                order.Id = Int32.Parse(parent.Element("Id").Value);  
+                order.Date = parent.Element("Date").Value; 
+                order.Time = parent.Element("Time").Value;  
+                order.PrepTime = Int32.Parse(parent.Element("PrepTime").Value);
+                order.State = parent.Element("State").Value;
+
+                List<int> dishes = new List<int>();
+                foreach (XElement dish in element.Descendants("Dish"))
+                {
+                    dishes.Add(Int32.Parse(dish.Value));
+                }
+                order.Dishes = dishes;
+                order.Chef = parent.Element("Chef").Value;
+                order.Client = Int32.Parse(parent.Element ("Client").Value);
+                order.FeedbackTime = parent.Element ("FeedbackTime").Value;
+                order.FeedbackScore = parent.Element ("FeedbackScore").Value;
+                
+                return order;
+            }
+            return null;
         }
 
         public IEnumerable<Order> GetOrdersByChef(string email)
@@ -470,11 +507,46 @@ namespace WebServiceResTEC.Data
                     }
                     order.Dishes = dishes;
                     order.Chef = element.Element ("Chef").Value;
+                    order.Client = Int32.Parse(element.Element ("Client").Value);
+                    order.FeedbackTime = element.Element ("FeedbackTime").Value;
+                    order.FeedbackScore = element.Element ("FeedbackScore").Value;
                     
                     orders.Add(order);
                 }     
             } 
             return orders;
+        }
+
+        public Order UpdateOrderState(Order order)
+        {
+            XDocument xmlDoc = XDocument.Load("DB\\orders.xml");  
+            var items = from item in xmlDoc.Descendants("Order")
+                        where Int32.Parse(item.Element("Id").Value) == order.Id
+                        select item;
+
+            foreach (XElement itemElement in items)
+            {
+                itemElement.SetElementValue("State", order.State);
+                itemElement.SetElementValue("Chef", order.Chef);
+            }
+            xmlDoc.Save("DB\\orders.xml");
+            return order;
+        }
+
+        public Order UpdateOrderFeedback(Order order)
+        {
+            XDocument xmlDoc = XDocument.Load("DB\\orders.xml");  
+            var items = from item in xmlDoc.Descendants("Order")
+                        where Int32.Parse(item.Element("Id").Value) == order.Id
+                        select item;
+
+            foreach (XElement itemElement in items)
+            {
+                itemElement.SetElementValue("FeedbackScore", order.FeedbackScore);
+                itemElement.SetElementValue("FeedbackTime", order.FeedbackTime);
+            }
+            xmlDoc.Save("DB\\orders.xml");
+            return order;
         }
 
         public IEnumerable<Dish> GetBestSellingDishes()
@@ -497,6 +569,20 @@ namespace WebServiceResTEC.Data
         {
             List<Client> allClients = (List<Client>) GetAllClients();
             List<Client> sortedList = allClients.OrderBy(o => o.AmountOrders).ToList();
+            sortedList.Reverse();
+            return sortedList.Take(10);
+        }
+
+        public IEnumerable<Order> GetOrdersByFeedBack()
+        {
+            List<Order> allOrders = (List<Order>) GetAllOrders();
+            List<Order> finishedOrders = new List<Order>();
+            foreach(Order order in allOrders){
+                if (order.State == "Terminado"){
+                    finishedOrders.Add(order);
+                }
+            }
+            List<Order> sortedList = finishedOrders.OrderBy(o => float.Parse(o.FeedbackScore)).ToList();
             sortedList.Reverse();
             return sortedList.Take(10);
         }

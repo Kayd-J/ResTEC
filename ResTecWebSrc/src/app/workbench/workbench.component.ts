@@ -21,4 +21,10 @@ export class WorkbenchComponent implements OnInit {
     this.dataService.getOrderByChef(this.chefEmail).subscribe( data => this.orders = data);
   }
 
+  private finishOrder(idStr: string, state: string, chef: string)
+  {
+    const id = Number(idStr);
+    this.dataService.updateOrder({id, state, chef} as OrderInterface).subscribe();
+  }
+
 }

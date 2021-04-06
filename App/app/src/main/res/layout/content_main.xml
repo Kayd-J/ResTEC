@@ -4,30 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#efb758"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity"
+    tools:context=".Funciones_Pantallas.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:id="@+id/lblrestec1"
+        android:id="@+id/lblrestec5"
         android:layout_width="191dp"
         android:layout_height="77dp"
-        android:background="#009688"
+        android:background="#efb758"
+        android:gravity="center"
         android:text="RESTEC"
+        android:textColor="#c34129"
         android:textSize="36sp"
         app:fontFamily="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.586"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.162" />
+        app:layout_constraintVertical_bias="0.157" />
 
     <TextView
         android:id="@+id/lblnombreu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre de Usuario"
+        android:textColor="#c34129"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,6 +47,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="usuario"
+        android:textColor="#c34129"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
@@ -57,6 +61,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
+        android:textColor="#c34129"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -69,6 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contraseña"
+        android:textColor="#c34129"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,6 +86,7 @@
         android:layout_width="108dp"
         android:layout_height="66dp"
         android:text="Entrar"
+        android:textColor="#c34129"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.524"
@@ -92,11 +99,12 @@
         android:layout_width="129dp"
         android:layout_height="62dp"
         android:text="Registrarse"
+        android:textColor="#c34129"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.905" />
+        app:layout_constraintVertical_bias="0.898" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

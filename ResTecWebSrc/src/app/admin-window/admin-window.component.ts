@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import {OrderInterface} from '../models/order.interface';
 import {DishInterface} from '../models/dish.interface';
+import {ClientInterface} from '../models/client.interface';
 
 @Component({
   selector: 'app-admin-window',
@@ -11,6 +12,8 @@ import {DishInterface} from '../models/dish.interface';
 export class AdminWindowComponent implements OnInit {
   orders: OrderInterface[] | undefined;
   topDishes: DishInterface[] | undefined;
+  topClients: ClientInterface[] | undefined;
+  topOrders: OrderInterface[] | undefined;
   constructor(private dataService: DataService) { }
 
   admin: boolean = true;
@@ -23,8 +26,6 @@ export class AdminWindowComponent implements OnInit {
   // Funciones que sustituyen el inicio de seccion de un cheff o admin
   cheffLog() { this.admin = false; }
   adminLog() { this.admin = true; }
-  printOrder(): void{
-  }
 
   getAllOrders(): void{
     this.dataService.getAllOrders().subscribe( data => this.orders = data);
@@ -33,4 +34,24 @@ export class AdminWindowComponent implements OnInit {
   private getBestSellingDishes() {
     this.dataService.getBestSellingDishes().subscribe( data => this.topDishes = data);
   }
+
+  private getBestProfitDishes() {
+    this.dataService.getBestProfitDishes().subscribe( data => this.topDishes = data);
+  }
+
+  private getOrdersByFeedback() {
+    this.dataService.getOrdersByFeedback().subscribe( data => this.topOrders = data);
+  }
+
+  private getBestClientsByOrders() {
+    this.dataService.getBestClientsByOrders().subscribe( data => this.topClients = data);
+  }
+
+  private takeOrder(idStr: string, chef: string)
+  {
+    const id = Number(idStr);
+    const state = 'En progreso';
+    this.dataService.updateOrder({id, state, chef} as OrderInterface).subscribe();
+  }
+
 }

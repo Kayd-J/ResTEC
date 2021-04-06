@@ -6,12 +6,10 @@ using WebServiceResTEC.Models;
 using System.Collections.Generic;
 
 
-// PEDIDO TENDRA EL FEEDBACK
-
-
 namespace WebServiceResTEC.Controllers
 {
-
+    
+    // This is an API Controller for the Client entity type. This Controller allows a GET and POST request.
     [Route("api/[controller]")]
     [ApiController]
     public class ClientsController : ControllerBase
@@ -26,6 +24,7 @@ namespace WebServiceResTEC.Controllers
         }        
 
         //GET api/admin
+        //This request returns a list of Client entities in a JSON format representing the Clients database.
         [HttpGet(Name="GetClients")]
         public ActionResult <ClientDto> GetClients()
         {
@@ -34,6 +33,8 @@ namespace WebServiceResTEC.Controllers
         }
 
         //POST api/clients
+        //This request receives a JSON representing a new Client Entity. This JSON is mapped to a Client Data Model 
+        //and the added to the database.
         [HttpPost]
         public ActionResult <ClientDto> CreateClient(ClientDto clientDto)
         {

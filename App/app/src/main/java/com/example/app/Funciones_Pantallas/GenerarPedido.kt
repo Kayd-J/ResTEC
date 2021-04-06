@@ -1,11 +1,10 @@
-package com.example.app
+package com.example.app.Funciones_Pantallas
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.content_main.*
+import com.example.app.R
 import kotlinx.android.synthetic.main.generar_pedido.*
 
 class GenerarPedido: AppCompatActivity() {
@@ -57,7 +56,6 @@ class GenerarPedido: AppCompatActivity() {
             val intent = Intent(this, Visualizar::class.java)
             intent.putExtra("preparacion", tiempo)
             startActivity(intent)
-            //startActivity(Intent(this, Visualizar::class.java))
         }
     }
 }

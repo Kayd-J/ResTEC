@@ -1,10 +1,11 @@
-package com.example.app
+package com.example.app.Funciones_Pantallas
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.app.R
 import kotlinx.android.synthetic.main.administrar_carrito.*
 
 class AdministrarCarrito: AppCompatActivity() {
@@ -90,11 +91,18 @@ class AdministrarCarrito: AppCompatActivity() {
 
         //Botón de acceso a la ventana de Generar Pedido
         btnconfirmar.setOnClickListener {
+
+            if (lbltotal.text.toString() == "total"){
+                Toast.makeText(this, "Favor agregar un platillo al carrito", Toast.LENGTH_LONG).show()
+            }
+            else
+            {
             val intent = Intent(this, GenerarPedido::class.java)
             intent.putExtra("total", cantidad_producto.toString())
             intent.putExtra("orden", platillos_recibidos)
             intent.putExtra("tiempo", preparacion.toString())
             startActivity(intent)
+            }
         }
     }
 }
